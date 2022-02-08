@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>In-Class JavaScript</title>
+  </head>
+  <body>
+
+    <h1 id="Welcome"></h1>
+
+    <script src="math.js"></script>
+
+    <script>
+
+    // Numbers
+    var myNumber = 42;
+    myNumber = myNumber + 10;
+    console.log(myNumber, myNumber / 2);
+
+    // Strings
+    var myString = "JavaScript is Cool!";
+    console.log("D3 and " + myString);
+    
+    // Booleans
+    var myNumber = 20;
+    var bigNumber = myNumber > 100;
+    console.log(bigNumber);
+
+    // Arrays
+    var myArray = ["Dave", myNumber, bigNumber, false, 100];
+
+    // Any line starting with double slashes is a comment
+    // that will not be interpreted by the browser.
+
+    // This should print out "two"
+    console.log(myArray[1]); 
+
+    // Objects
+    var user = {
+        name: "Dave",
+        color: "red",
+        height: 72,
+        dog: "Lucy",
+        favoriteNumber: myNumber
+    };
+    console.log(user.name)
+
+    // Functions & Function Returns
+    var sayHello = function(name) {
+        
+        var helloString = "Hello " + name + "!";
+    console.log(helloString, myNumber);
+    return helloString;
+  }
+
+    var myJoviString = sayHello("Jovi");
+    var myUserString = sayHello(user.name);
+    var myDogsString = sayHello(user.dog);
+
+    console.log(myJoviString, myUserString);
+
+
+    var fourSquare = squarify(4);
+    var hundredSquared = squarify(100);
+
+    console.log(fourSquare);
+
+    // Function Variables
+    var sayText = function(txt) {
+    console.log(txt);
+  }
+
+    sayText("Goodbye");
+
+    // Conditional Statements
+    if (myNumber > 100) {
+        console.log("Wow, bigger than 100!");
+    }
+    else if (myNumber > 50) {
+        console.log("Ok, decent, bigger than 50!");
+    }
+    else {
+        console.log("Sorrry, small number...")
+    }
+
+
+    // Interative with DOM
+    var title = document.getElementById("Welcome");
+    console.log(title);
+    title.innerHTML = "Welcome " + user.name + "!";
+
+
+
+
+    </script>
+
+  </body>
+
+
+
+</html>
