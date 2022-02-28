@@ -1,0 +1,11 @@
+.update {
+    fill: #333
+  }
+  
+  .new {
+    fill: green
+  }
+  
+  .exit {
+    fill: red
+  }

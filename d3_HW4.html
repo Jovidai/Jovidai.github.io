@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Homework:4</title>
+
+</head>
+
+  <h1 style= "text-align: center">Here's D3.js Homework: 02-28</h1>
+  <h2 style= "text-align: center">Zhaozhou(Jovi)</h2>
+
+  <p style= "text-align: center">Description: Create an HTML page containing a function that uses enter/update/exit to draw SVG squares based on a data Array provided to the function.</p>
+
+<style>
+body {
+    background-color:antiquewhite;
+    text-align: center
+}
+.btn{
+    border: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+  }
+</style>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script scr="https://d3js.org/d3.v7.min.js"></script>
+
+<!-- Create SVG Squares -->
+
+<body>
+
+  <h1 id = "title">The GDP of the Top 3 Countries in the World Past Two Years</h1>
+  <svg id="rectCanvas"></svg>
+
+  <script>
+
+    d3.select("#title")
+      .attr("class", "big")
+      .style("color", "green");
+
+      var data2020 = [
+          {
+          country: "USA",
+          value: 20
+          },
+          {
+          country: "CHN",
+          value: 14
+          },
+          {
+          country: "JPN",
+          value: 5
+          }
+      ];
+
+      var data2021 = [
+          {
+          country: "CHN",
+          value: 16
+          },
+          {
+          country: "JPN",
+          value: 5
+          }
+      ];
+
+
+      function drawRect(dataArray) {
+
+        // Data Binding
+
+        var rect = d3.select("#rectCanvas")
+           .selectAll("rect")
+           .data(dataArray, function(currentDataPoint) {
+               console.log(currentDataPoint.country);
+               return currentDataPoint.country;
+           })
+
+           // Update
+           rect
+           .transition().duration(100)
+           .attr("x", function(d) {
+                  return d.value * 10;
+              })
+            .attr("height", function(d) {
+                  return d.value * 2;
+            })
+            .attr("width", function(d) {
+                  return d.value * 2;
+            })
+            .attr("fill", "purple")
+                ;
+            
+
+           // Enter
+           rect.enter().append("rect")
+              .attr("class", "myRect")
+              .attr("x", function(d) {
+                  return d.value * 10;
+              })
+              .attr("height", function(d){
+                return d.value;
+              })
+              .transition()
+              .duration(1000)
+              .attr("width", function(d){
+                return d.value * 2;
+              })
+              .attr("fill", "orange");
+
+             // Exit
+            rect.exit()
+            .transition()
+            .duration(1000)
+            .attr("fill", "red")
+            .remove();
+
+
+      }
+
+      drawRect(data2020);
+
+ </script>
+
+</body>
+
+<!-- Create a div where the graph will take place -->
+<div id="canvas"></div>
+<script>
+const canvas = d3.select('#canvas')
+const svg = canvas.append('svg')
+  .attr('height', 300)
+  .attr('width', 500)
+const data = 'abcdefghijklmnopqrstuvwxyz'.split('')
+
+var g = svg.append('g')
+  .attr('transform', 'translate(0, 50)')
+
+const d3Pattern = (dataSet) => {
+  const t = d3.transition().duration(750)
+  const text = g.selectAll('text').data(dataSet, d => d)
+  
+  text.attr('class', 'update')
+  	.attr('y', 0)
+  	.transition(t)
+  		.attr('x', (d, i) => 18 * i)
+  
+  
+  text.enter()  
+      .append('text')
+      .attr('class', 'new')
+      .text(d => d)
+      .attr('fill-opacity', 1)
+      .attr('y', -60)
+  			.transition(t)
+  				.attr('y', 0)
+  				.attr('x', (d, i) => 18 * i)
+
+  text.exit()
+	.transition(t)
+		.attr('y', 60)
+    .attr('fill-opacity', 1e-6)
+		.remove()
+}
+const i = d3.interpolateRound( 10, 50 )
+
+setInterval(() => {
+  const letters =  d3.shuffle(data)
+      .slice(0, Math.floor(Math.random() * 26))
+      .sort()
+  d3Pattern(letters)
+  console.log(i(Math.random()))
+}, 1500)
+</script>
+
+<p>
+  <a href="index.html">Back to Home</a>
+
+  </p>
+
+</html>
