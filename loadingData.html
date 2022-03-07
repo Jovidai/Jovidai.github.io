@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Data Manipulation</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+
+    <script>
+
+         d3.csv("file.csv")
+           .then(function(csvData) {
+            console.log(csvData);
+          });
+
+          var countryName = {
+              "usa": "United States of America",
+              "mex": "México"
+          };
+
+
+        d3.text("file.txt")
+           .then(function(textFile) {
+            console.log(textFile);
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        d3.json("file.json")
+        .then(function(jsonFile) {
+            console.log(jsonFile);
+        });
+
+        //API
+        var url = "https://datausa.io/api/data?measures=Population,Average Wage";
+
+        d3.json(url)
+          .then(function(apiData) {
+          console.log(apiData);
+        });
+
+        d3.csv("top50.csv") //https://www.kaggle.com/leonardopena/top50spotify2019?select=top50.csv
+        .then(function(sptifyData){
+
+            sptifyData.forthEach(function(d) {
+                d.Rank = parseFloat(d.Rank);
+                d["Loudness..dB.."] = parseFloat(d["Loudness..dB.."]);
+                // d["Track Name"] = parseFloat(d["Track Name"]);
+                // "==" means the comparsion with two objects
+            });
+
+            var quietSongs = spotifyData.filter(function(d) {
+                return d["Loudness..dB.."] < -10;
+            });
+
+            var energyExtent = d3.min(spotifyData, function(d){
+                return d.Energy;
+            });
+
+            console.log("energy value:", energyExtent);
+
+            var songsByArtist = d3.group(spotifyData, function(d) {
+                return 
+            });
+
+            console.log(songsByArtist.get(Shawn ));
+
+            console.log(spotifyData);
+            console.log(quietSongs);
+
+
+
+
+        });
+
+        
+        
+
+    </script>
+
+<p>
+  <a href="index.html">Back to Home</a>
+  </p>
+
+  </body>
+</html>
