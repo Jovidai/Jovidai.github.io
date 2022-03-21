@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Homework: 6</title>
+    <link rel="stylesheet" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+
+  <h1 style= "text-align: center">Here's Loading Dataset Homework: 03-21</h1>
+  <h2 style= "text-align: center">Zhaozhou(Jovi)</h2>
+
+  <p style= "text-align: center">Description: Whether storing in a file on your computer or using an API, set up an HTML page that loads the data you need for your final project into Javascript using D3. <br>Use console.log to display your data and we will look at it next class all together.</p>
+
+<style>
+body {
+    background-color:antiquewhite;
+    text-align: center
+}
+.btn{
+    border: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+  }
+</style>
+
+  <body>
+    <script>
+      d3.csv("qs_world_university_rankings_2017_to_2022_V2.csv")
+        .then(function(universityrankingsdata) {
+          console.log(universityrankingsdata);
+        });
+    </script>
+
+  <p>
+  <a href="index.html">Back to Home</a>
+  </p>
+  </body>
+</html>
