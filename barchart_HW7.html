@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Homework: 7</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+
+      body {
+        margin: 0;
+      }
+
+    </style>
+
+  </head>
+
+  <h1 style= "text-align: center">Here's Making a Bar Chart Homework: 03-28</h1>
+  <h2 style= "text-align: center">Zhaozhou(Jovi)</h2>
+  <a href="index.html">Back to Home</a>
+
+  <p style= "text-align: center">Description: Experiment with the bar visualization we made in class today. Some examples of improvements: coloring the bars, changing the borders, background color, font styles.</p>
+
+<style>
+body {
+    background-color:antiquewhite;
+    text-align: center;
+}
+.btn {
+    border: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+
+    <svg id="barchart">
+      <g id="shapes"></g>
+      <g id="x"></g>
+      <g id="y"></g>
+    </svg>
+
+    <script>
+
+      var url = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random";
+      var frequency = 3 * 1000; // three seconds
+      var dataMax = 5;
+      var data = [];
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      var margin = {
+        top: 20,
+        right: 20,
+        bottom: 50,
+        left: 50
+      };
+      var chartWidth = 960 - margin.left - margin.right;
+      var chartHeight = 600 - margin.top - margin.bottom;
+
+      var svg = d3.select("#barchart")
+        .attr("width", width)
+        .attr("height", height)
+     
+      var domainValues = d3.range(1, dataMax + 1);
+
+      var x = d3.scaleBand()
+        .domain(domainValues.reverse())
+        .range([margin.left, margin.left + chartWidth])
+        .paddingInner(0.2)
+        .paddingOuter(0.3);
+
+      var barWidth = x.bandwidth();
+
+      function fetchData() {
+
+        d3.json(url)
+          .then(function(users) {
+
+            data.unshift({
+              users: users,
+              timestamp: new Date()
+            });
+
+            if (data.length > dataMax) data.pop();
+
+            var maxUsers = d3.max(data, function(d) {
+              return d.users;
+            });
+
+            var barHeight = d3.scaleLinear()
+              .domain([0, maxUsers])
+              .range([0, chartHeight]);
+
+            var y = d3.scaleLinear()
+              .domain([0, maxUsers])
+              .range([margin.top + chartHeight, margin.top]);
+
+            var yAxis = d3.axisLeft(y);
+            svg.select("#y")
+              .attr("transform", "translate(" + margin.left + ", 0)")
+              .transition().duration(frequency / 2)
+              .call(yAxis).selectAll("text")
+              .attr("font-size", "18px")
+              .attr("font-family","cursive")
+              .attr("fill", "purple")
+              .attr("stroke", "purple");
+
+
+            var xAxis = d3.axisBottom(x)
+              .tickFormat(function(d) {
+                var dataPoint = data[d - 1];
+                if (dataPoint) {
+                  var time = dataPoint.timestamp;
+                  var diff = new Date() - time;
+                  var secondsAgo = Math.round(diff / 1000);
+                  if (secondsAgo === 0) {
+                    return "Now";
+                  }
+                  else {
+                    var word = secondsAgo === 1 ? "second" : "seconds";
+                    return secondsAgo + " " + word + " ago";
+                  }
+               }
+               else {
+                 return "";
+               }
+             });
+            svg.select("#x")
+              .attr("transform", "translate(0, " + (chartHeight + margin.top) + ")")
+              .transition().duration(frequency / 2)
+              .call(xAxis).selectAll("text")
+              .attr("font-size", "18px")
+              .attr("font-color", "orange")
+              .attr("rotate","15")
+              .attr("font-family","cursive")
+              .attr("fill", "purple")
+              .attr("stroke", "purple");
+
+            function zeroState(selection) {
+              selection
+                .attr("height", 0)
+                .attr("y", y(0));
+            }
+
+            function barPosition(selection) {
+              selection
+                .attr("height", function(d) {
+                  return barHeight(d.users);
+                })
+                .attr("y", function(d) {
+                  return y(d.users);
+                });
+            }
+
+            // Data Binding
+            var bars = svg.select("#shapes").selectAll(".bar")
+              .data(data, function(d) {
+                return d.timestamp;
+              });
+
+            // Entering Bars
+            bars.enter().append("rect")
+              .attr("class", "bar")
+              .attr("fill", "#69b3a2")
+              .attr("opacity", 0.6)
+              .attr("stroke", "#DE3163")
+              .attr("stroke-width", 3.5)
+              .attr("width", barWidth)
+              .attr("x", function(d, i) {
+                return x(i + 1);
+              })
+              .call(zeroState)
+              .transition().duration(frequency / 2)
+                .call(barPosition);
+
+            // Updating Bars
+            bars
+              .transition().duration(frequency / 2)
+              .attr("fill", "#DE3163")
+              .attr("opacity", 1)
+              .attr("stroke", "#6495ED")
+              .attr("stroke-width", 3.5)
+              .attr("x", function(d, i) {
+                return x(i + 1);
+              })
+              .call(barPosition);
+
+            // Exiting Bars
+            bars.exit()
+              .transition().duration(frequency / 1)
+              .attr("fill", "#6495ED")
+              .attr("opacity", 0.5)
+              .call(zeroState)
+              .remove();
+
+          });
+
+      }
+
+
+
+      fetchData();
+      setInterval(fetchData, frequency);
+
+
+    </script>
+  </body>
+</html>

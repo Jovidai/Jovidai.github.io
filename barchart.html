@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bar Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+
+      body {
+          margin: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <svg id="barchart">
+         <g id="chart">
+         <g id="shapes"></g>
+         <g id="x"></g>
+         <g id="y"></g>   
+    </svg>
+
+    <script>
+        var url = "https://whiteboard.datawheel.us/api/google-analytics/realtime/random"
+        var frequency = 3 * 1000; // 10 seconds
+        var dataMax = 5;
+        var data = [];
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var barWidth = width / dataMax;
+        var margin = {top: 20, right: 20, bottom: 50, left: 100};
+        var chartWidth = width - margin.left - margin.right;
+        var chartHeight = height - margin.top - margin.bottom;
+
+
+        var svg = d3.select("#barchart")
+        .attr("width", width)
+        .attr("height", height);
+
+        var domainValues = d3.range(1, dataMax + 1);
+
+
+        var x = d3.scaleLinear()
+          .domain([dataMax, 1])
+          .range([margin.left, margin.left + chartWidth - barWidth]);
+
+        function fetchData() {
+
+        d3.json(url)
+          .then(function(users) {
+                // we'll enter/update/exit the bars here
+           
+             data.unshift({
+                 users: users,
+                 timestamp: new Date()
+             });
+
+             if (data.length > dataMax) data.pop();
+
+             var maxUsers = d3.max(data, function(d) {
+                 return d.users;
+             });
+
+             var barHeight = d3.scaleLinear()
+                .domain([0, maxUsers])
+                .range([0, chartHeight]);
+
+             var y = d3.scaleLinear()
+                .domain([0, maxUsers])
+                .range([margin.top + chartHeight, margin.top]);
+
+             var yAxis = d3.axisLeft(y);
+                svg.select("#y")
+                .attr("transform", "translate(" + margin.left + ", 0)")
+                .call(yAxis); 
+
+             var xAxis = d3.axisBottom(x);
+               svg.select("#x")
+               .attr("transform", "translate(0, " + (chartHeight + margin.top) + ")")
+               .call(xAxis);
+
+                function zeroState(selection) {
+                selection
+                .attr("height", 0)
+                .attr("y", y(0));
+            }
+
+                function barPosition()
+
+             // Data Binding
+             var bars = svg.selectAll(".bar")
+               .data(data, function(d) {
+                   return d.timestamp;
+            });
+
+             // Entering Bars
+            bars.enter().append("rect")
+              .attr("class", "bar")
+              .attr("width", barWidth)
+              .attr("height", function(d) {
+                return barHeight(d.users);
+          })
+              .attr("x", function(d, i) {
+                   return x(i + 1);
+            })
+              .attr("y", y(0))
+              .transition().duration(frequency / 2)
+              .attr("y", function(d) {
+                return y(d.users);
+             });
+
+             // Updating Bars
+             bars
+               .transition().duration(frequency / 2)
+               .attr("height", function(d) {
+                 return barHeight(d.users);
+            })
+               .attr("x", function(d, i) {
+                 return x(i + 1);
+            })
+               .attr("y", function(d) {
+                 var h = barHeight(d.users);
+                 return height - h;
+             })
+                .attr("y", function(d) {
+                return y(d.users);
+             });
+
+             // Exiting Bars
+            bars.exit()
+                .transition().duration(frequency / 2)
+                .call(yAxis)
+                .remove();
+                
+         });
+
+         }
+
+         fetchData();
+         setInterval(fetchData, frequency);
+
+
+    </script>
+  </body>
+</html>
