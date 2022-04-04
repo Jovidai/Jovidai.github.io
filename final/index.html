@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>QS World University Rankings</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  
+  <body>
+
+    <div id="banner">
+      <h1>QS World University Rankings 2017 - 2022</h1>
+      <p>
+        Discover the world’s top universities with the QS World University Rankings® from 2017 to 2022.
+        <br> 
+        <br>
+        Explore the full list of over 1,000 universities and filter by location and region.
+      </p>
+      <p>
+        Created by Zhaozhou(Jovi) Dai
+      </p>
+    </div>
+
+    <div class="section">
+      <p>The dataset I gained is about the QS World University Rankings from 2017 to 2022 to discover and explore the world's leading academic institutions, which was acquired by scraping the <a href="https://www.topuniversities.com/university-rankings?utm_source=topnav">QS World University Rankings</a> website with Python and Selenium.</p>
+      <svg id="chart1"></svg>
+    </div>
+    <div class="section"> 
+      <svg id="chart2"></svg> <!-- flex: automatically adjust the distance when you are zooming in or zooming out the webpage -->
+      <p>QS World University Rankings is an annual publication of global university rankings by Quacquarelli Symonds. The QS ranking receives approval from the International Ranking Expert Group (IREG), and is viewed as one of the three most-widely read university rankings in the world. QS publishes its university rankings in partnership with Elsevier.</p>
+    </div>
+
+    <div id="tooltip">
+      University: <span id="university"></span>
+      <br />
+      Year: <span id="year"></span>
+      <br />
+      Ranking: <span id="rank_display"></span>
+    </div>
+
+    <script src="./banner.js"></script>
+    <script src="./chart1.js"></script>
+
+    <p id="back">
+    <a href="/index.html">Back to Home</a>
+    </p>
+
+  </body>
+</html>

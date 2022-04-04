@@ -1,0 +1,138 @@
+/* --------------  LOAD FONTS FROM SERVER ------------------------------ */
+
+
+@font-face {
+ font-family: "IvarHeadline-Regular";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Regular.woff2);
+}  
+
+@font-face {
+ font-family: "IvarHeadline-Italic";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Italic.woff2);
+} 
+
+@font-face {
+ font-family: "IvarHeadline-Bold";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Bold.woff2);
+}  
+
+@font-face {
+ font-family: "IvarHeadline-BoldItalic";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/IvarHeadline-Italic.woff2);
+} 
+
+@font-face {
+ font-family: "Staff-Regular";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-Regular.woff2);
+}  
+
+@font-face {
+ font-family: "Staff-Italic";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-Italic.woff2);
+} 
+
+@font-face {
+ font-family: "Staff-Bold";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-Bold.woff2);
+}  
+
+@font-face {
+ font-family: "Staff-BoldItalic";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/Staff-BoldItalic.woff2);
+} 
+
+@font-face {
+ font-family: "Carrie-Regular";
+  src: url(https://mediainnovation.camd.northeastern.edu/2022/emancipator/fonts/VTCCarrie-Regular.woff2);
+}  
+
+/* ------------------  EMANCIPATOR COLORS ----------------------------- */
+/* FOREST #31463F */
+/* ROSE #CD395B */
+/* FOREST #31463F */
+/* PINK #F6B0A0 */
+/* PUTTY #F6F2E1 */
+/* SKY #BADEFC */
+/* BLACK #1C1C1C */
+/* HIGHLIGHTER #EBF952 */
+
+
+/* --------------  CSS STYLES FOR MY PAGE ------------------------------ */
+
+.headline h1 {
+    color: #CD395B;
+    font-size: 5em;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "IvarHeadline-Regular","Times",serif;
+    font-weight: 100; /* Ensures that font is not bolded by browser */
+}
+
+.headline h2 {
+  color:#31463F;
+  font-size: 3em;
+  text-align: center;
+}
+
+.headline h3 {
+  font-size: 2em;
+  text-align: center;
+}
+
+.header {
+  image-orientation: flip;
+}
+
+p {
+    color: #1c1c1c;
+    font-family: "Georgia","Times",serif;
+    font-size: 1.2em;
+    line-height: 2em;
+    margin:auto;
+}
+
+a:link {
+    color:#cd395b; /* Uses Emancipator ROSE */
+    text-decoration: none;
+}
+
+a:visited {
+    color:#cd395b;
+}
+
+a:hover {
+    color:#1c1c1c;
+    background-color: #ebf952; /*Sets background of link to Emancipator HIGHLIGHTER */
+}
+
+figure {
+  display: inline-block;
+  border: 1px dotted gray;
+  margin-left: 90;
+}
+
+
+figure figcaption {
+  font-size: 20px;
+  text-align: center;
+}
+
+#botsify-embed-div {
+  text-align: center;
+}
+
+#details {
+  text-align: center;
+  background-color:#F6B0A0;
+}
+
+#detail {
+  text-align: center;
+  font-size: 25px;
+}
+
+.container {
+  width: 65%;
+  background-color: none;
+  margin: 0 250 0 250;
+  }
