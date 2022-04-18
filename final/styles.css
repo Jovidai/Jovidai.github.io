@@ -1,11 +1,13 @@
 body {
-    font-family: "Georgia";
+    font-family: "rockwell";
     margin: 0;
+    text-align: center;
+
 }
 
 #banner {
     color: aliceblue;
-    background-color: #FFC300;
+    background-color: "none";
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/aa/Butler_Library_Columbia_University.jpg');
     background-position: 50% 100%;
     background-color: non-repeat;
@@ -15,22 +17,7 @@ body {
     text-align: center;
   }
 
-  .section {
-    display: flex;
-    flex-direction: row;
-    padding: 50px;
-  }
   
-  .section p {
-    flex: 1; 
-  }
-  
-  .section svg {
-    border: 3px solid orange;
-    flex: 2;
-    height: 300px;
-    margin: 20px;
-  }
 
   @media (max-width: 600px) {
     .section {
@@ -50,4 +37,10 @@ body {
 
   #back {
     text-align: center;
+  }
+
+  #paragraph {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 8px;
   }
