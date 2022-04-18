@@ -60,6 +60,7 @@
 /* --------------  CSS STYLES FOR MY PAGE ------------------------------ */
 
 .headline h1 {
+    position: 50px;
     color: #CD395B;
     font-size: 5em;
     text-transform: uppercase;
@@ -69,6 +70,7 @@
 }
 
 .headline h2 {
+  position: relative;
   color:#31463F;
   font-size: 3em;
   text-align: center;
@@ -77,18 +79,21 @@
 .headline h3 {
   font-size: 2em;
   text-align: center;
+  font-style: italic;
 }
 
 .header {
   image-orientation: flip;
 }
 
-p {
+.container p {
     color: #1c1c1c;
     font-family: "Georgia","Times",serif;
-    font-size: 1.2em;
-    line-height: 2em;
-    margin:auto;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.8;
+    margin: auto;
+    text-indent: 2em;
 }
 
 a:link {
@@ -122,17 +127,41 @@ figure figcaption {
 }
 
 #details {
+  font-family: "IvarHeadline-Regular";
   text-align: center;
   background-color:#F6B0A0;
+  ;
 }
 
 #detail {
   text-align: center;
   font-size: 25px;
+  font-family: "Georgia","Times",serif;
+  background-color: "none";
 }
 
 .container {
+  text-align: justify;
+  text-justify: inter-word;
   width: 65%;
   background-color: none;
   margin: 0 250 0 250;
   }
+
+
+@media (max-width: 550px) {
+  .container {
+    width: 96%;
+    margin: 0 auto 0 auto;
+    background-color: #F6F2E1;
+  }
+}
+
+
+@media (min-width: 551px) {
+  .container {
+    width: 73%;
+    margin: 0 auto 0 auto;
+    background-color: #F6F2E1;
+  }
+}
