@@ -28,13 +28,6 @@ body {
     }
   }
 
-  #tooltip {
-    background-color: #eeeeee;
-    border: 1px solid black; 
-    display: none;
-    position: absolute;
-  }
-
   #back {
     text-align: center;
   }
@@ -43,4 +36,9 @@ body {
     font-size: 20px;
     text-align: center;
     margin-top: 8px;
+  }
+
+  #tooltip {
+    display: none;
+    position: absolute;
   }

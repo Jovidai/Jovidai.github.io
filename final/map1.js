@@ -84,12 +84,30 @@ var svg = d3.select("#map1")
                      }
 
                   })
-                  .on("mousemove", function(feature, d) {
+                  .on("mousemove", function(event, feature) {
 
+                  var localData = countryData.filter(function(d) {
+                  return d.country === feature.properties.name;
+                  });
+            
+                  if (localData.length) {
+                  var dataObject = localData[0];
+                  d3.select("#tooltip") 
+                  .style("display", "block")
+                  .style("top", event.pageY + "px")
+                  .style("left", event.pageX + "px")
+                  .html("<b>Average: </b>" + dataObject.averageScore);
+                  }
+            
+                  })
+                  .on("mouseout", function(event, feature) {
+
+                  d3.select("#tooltip")
+                  .style("display", "none");
                   })
                 
+                  });
 
-            });
 
             var zoom = d3.zoom()
             .translateExtent([[0, 0], [width, height]])
