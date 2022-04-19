@@ -96,9 +96,11 @@ var svg = d3.select("#map1")
                   .style("display", "block")
                   .style("top", event.pageY + 20 + "px")
                   .style("left", event.pageX + 20 + "px")
-                  .html("<b>Country: </b>" + dataObject.country)
-                  .html("<b>Count: <b/>" + dataObject.universities.length)
-                  .html("<b>Average: </b>" + dataObject.averageScore);
+                  .html("<b>Country: </b>" + dataObject.country
+                  + "<br />"
+                  + "<b>Count: <b/>" + dataObject.universities.length
+                  + "<br />"
+                  + "<b>Average: </b>" + dataObject.averageScore);
                   }
             
                   })
