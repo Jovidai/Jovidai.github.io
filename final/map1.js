@@ -94,8 +94,10 @@ var svg = d3.select("#map1")
                   var dataObject = localData[0];
                   d3.select("#tooltip") 
                   .style("display", "block")
-                  .style("top", event.pageY + "px")
-                  .style("left", event.pageX + "px")
+                  .style("top", event.pageY + 20 + "px")
+                  .style("left", event.pageX + 20 + "px")
+                  .html("<b>Country: </b>" + dataObject.country)
+                  .html("<b>Count: <b/>" + dataObject.universities.length)
                   .html("<b>Average: </b>" + dataObject.averageScore);
                   }
             
