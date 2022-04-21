@@ -36,9 +36,43 @@ body {
     font-size: 20px;
     text-align: center;
     margin-top: 8px;
+    line-height: 35px;
   }
 
   #tooltip {
     display: none;
     position: absolute;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 200px;
+    text-align: left;
+    font-size: 15px;
   }
+
+  #tooltip2 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+    font-family: 'Mukta', sans-serif;
+    font-size: 10pt;
+    background-color:#c7f9cc;
+    padding: 2px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  a:link {
+    color:#cd395b; /* Uses Emancipator ROSE */
+    text-decoration: none;
+}
+
+  a:visited {
+    color:#cd395b;
+}
+
+  a:hover {
+    color:#1c1c1c;
+    background-color: #ebf952; /*Sets background of link to Emancipator HIGHLIGHTER */
+}

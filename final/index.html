@@ -2,11 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <title>QS World University Rankings</title>
+    <!--d3.js--> 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
-    <title>QS World University Rankings</title>
+    <!-- CSS file-->
     <link rel="stylesheet" href="./styles.css" />
-    <link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
+    <!--Header font-->
+
   </head>
   
   <body>
@@ -15,14 +18,14 @@
       <!--JavaScript files-->
       <script src="./banner.js"></script></script>
       <!--JavaScript files--> 
-      <h1>QS World University Rankings 2017 - 2022</h1>
-      <h2>
+      <h1 style="text-shadow: 5px 6px black;">QS World University Rankings 2017 - 2022</h1>
+      <h2 style="text-shadow: 5px 6px black;">
         Discover the world's top universities with the QS World University Rankings® from 2017 to 2022.
       <br> 
       <br>
         Explore the full list of over 1,000 universities and filter by location and region.
       </h2>
-      <h3>
+      <h3 style="text-shadow: 5px 6px black;">
         Created by Zhaozhou(Jovi) Dai
       </h3>
     </div>
@@ -30,9 +33,17 @@
     <br>
     <br>
     <br>
-    <p id="paragraph">The dataset I gained is about the QS World University Rankings from 2017 to 2022 to discover and explore the world's leading academic institutions, 
+    <p id="paragraph">QS World University Rankings is an annual publication of global university rankings by <a href="https://www.qs.com/">Quacquarelli Symonds</a>. The QS ranking receives approval from the <strong>International Ranking Expert Group (IREG)</strong>, 
+      and is viewed as one of the three most-widely read university rankings 
+    <br>
+      in the world. QS publishes its university rankings in partnership with Elsevier.</p>
+    <br>
+    <p><img src=https://i.ibb.co/F46sQh5/Borde.png width=1500></p>
+    <br>
+    <p id="paragraph">The dataset I gained is about the QS World University Rankings from <strong>2017 to 2022</strong> to discover and explore the world's leading academic 
       <br>
-      which was acquired by scraping the <a href="https://www.topuniversities.com/university-rankings?utm_source=topnav">QS World University Rankings</a> website with Python and Selenium.</p>
+      institutions, which was acquired by scraping the <a href="https://www.topuniversities.com/university-rankings?utm_source=topnav">QS World University Rankings</a> website with Python and Selenium.</p>
+    <p><img src=https://static.wixstatic.com/media/8a9cf0_14469106f5294152b63323c1ab690c03~mv2.gif height=100 width=100></p>
     
     
     <div class="section">
@@ -46,9 +57,26 @@
             <!-- flex: automatically adjust the distance when you are zooming in or zooming out the webpage -->
     
       <p>QS World University Rankings is an annual publication of global university rankings by Quacquarelli Symonds. The QS ranking receives approval from the International Ranking Expert Group (IREG), and is viewed as one of the three most-widely read university rankings in the world. QS publishes its university rankings in partnership with Elsevier.</p>
+       
     </div>
+       
+       <div class="section">
+       <svg id="barchart"></svg>
+       <g id="this"></g>
+       <g id="rect"></g>
+       <g id="x"></g>
+       <g id="y"></g>
+         <!-- <rect id="bar" fill="white" /> -->
+       </div>
+
+       </svg>
+       <!--JavaScript files-->
+       <script src="./barchart.js"></script>
+      
+       <p>QS World University Rankings is an annual publication of global university rankings by Quacquarelli Symonds. The QS ranking receives approval from the International Ranking Expert Group (IREG), and is viewed as one of the three most-widely read university rankings in the world. QS publishes its university rankings in partnership with Elsevier.</p>
 
    <div id = "tooltip"></div>
+   <div id = "tooltip2"></div>
   
   
 

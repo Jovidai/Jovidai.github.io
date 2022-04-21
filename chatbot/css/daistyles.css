@@ -62,7 +62,7 @@
 .headline h1 {
     position: 50px;
     color: #CD395B;
-    font-size: 5em;
+    font-size: 4em;
     text-transform: uppercase;
     text-align: center;
     font-family: "IvarHeadline-Regular","Times",serif;
@@ -72,18 +72,20 @@
 .headline h2 {
   position: relative;
   color:#31463F;
-  font-size: 3em;
+  font-size: 2em;
   text-align: center;
 }
 
 .headline h3 {
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
   font-style: italic;
 }
 
 .header {
   image-orientation: flip;
+  width: 400px;
+  display: inline;
 }
 
 .container p {
@@ -130,6 +132,7 @@ figure figcaption {
   font-family: "IvarHeadline-Regular";
   text-align: center;
   background-color:#F6B0A0;
+  font-size: 20px;
   ;
 }
 
@@ -148,12 +151,21 @@ figure figcaption {
   margin: 0 250 0 250;
   }
 
+.logo {
+  width: 400px;
+  display: inline-block;
+}
+
 
 @media (max-width: 550px) {
   .container {
     width: 96%;
     margin: 0 auto 0 auto;
     background-color: #F6F2E1;
+  }
+  .headline {
+    width: 96%;
+    margin: 0 auto 0 auto;
   }
 }
 
@@ -163,5 +175,9 @@ figure figcaption {
     width: 73%;
     margin: 0 auto 0 auto;
     background-color: #F6F2E1;
+  }
+  .headline {
+    width: 73%;
+    margin: 0 auto 0 auto;
   }
 }
