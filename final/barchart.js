@@ -30,7 +30,7 @@ svg.append("g")
 
 // Add Y axis
 var y = d3.scaleLinear()
-.domain([0, 2000])
+.domain([0, 3000])
 .range([ height, 0]);
 svg.append("g")
 .call(d3.axisLeft(y));
@@ -39,27 +39,32 @@ var tooltip=d3.select("#tooltip2")
 
 // Bars
 svg.selectAll("rect")
-.data(data)
-.enter()
-.append("rect")
-.attr("x", function(d) { return x(d.university); })
-.attr("width", x.bandwidth())
-.attr("fill", "#70e000")
-// if no bar at the beginning :
-.attr("height", function(d) { return height - y(0); }) 
-.attr("y", function(d) { return y(0);})
-.on("mouseover", mouseover)
-.on("mousemove", mousemove)
-.on("mouseout", mouseout);
+  .data(data)
+  .enter()
+  .append("rect")
+  .attr("x", function(d) { return x(d.university); })
+  .attr("width", x.bandwidth())
+  .attr("fill", "#70e000")
+  // if no bar at the beginning :
+  .attr("height", function(d) { return height - y(0); }) 
+  .attr("y", function(d) { return y(0);})
+  .on("mouseover", mouseover)
+  .on("mousemove", mousemove)
+  .on("mouseout", mouseout)
+  .transition()
+  .duration(800)
+  .attr("y", function(d) { return y(d.international_students); })
+  .attr("height", function(d) { return height - y(d.international_students); })
+  .delay(function(d,i){console.log(i) ; return(i*100)})
 
-function mousemove(d) {
+function mousemove(event, d) {
 d3.select(this)
 .attr("fill","#55a630")
 .attr("stroke-width", "1px")
 .attr("fill-opacity", "1");
 tooltip.style("display", "block")
-.style("top", d3.event.pageY + "px")
-.style("left", d3.event.pageX + "px")
+.style("top", event.pageY + "px")
+.style("left", event.pageX + "px")
 .html(
  "Size: <b>" +
    d.size+
@@ -70,7 +75,7 @@ tooltip.style("display", "block")
    
 }
 
-function mouseover(d) {
+function mouseover() {
   d3.select(this)
     .attr("fill","#55a630")
     .attr("stroke-width", "1px")
@@ -79,7 +84,7 @@ function mouseover(d) {
        
 }
 
-function mouseout(d) {
+function mouseout() {
   d3.select(this)
     .attr("fill", "#70e000")
     .attr("stroke-width", ".3")
@@ -87,19 +92,7 @@ function mouseout(d) {
   tooltip.style("display", "none");
 }
 
-
-
-
-// Animation
-svg.selectAll("rect")
-.transition()
-.duration(800)
-.attr("y", function(d) { return y(d.international_students); })
-.attr("height", function(d) { return height - y(d.international_students); })
-.delay(function(d,i){console.log(i) ; return(i*100)})
-
 });
-
 
 
 

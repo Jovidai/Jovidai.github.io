@@ -98,7 +98,7 @@ var svg = d3.select("#map1")
                   .style("left", event.pageX + 20 + "px")
                   .html("<b>Country: </b>" + dataObject.country
                   + "<br />"
-                  + "<b>Count: <b/>" + dataObject.count
+                  + "<b>Count: </b>" + dataObject.count
                   + "<br />"
                   + "<b>Average Score: </b>" + dataObject.averageScore);
                   }
