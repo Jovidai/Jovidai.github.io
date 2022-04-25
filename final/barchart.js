@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-var margin = {top: 40, right: 40, bottom: 30, left: 110},
-width = 700 - margin.left - margin.right,
-height = 550 - margin.top - margin.bottom;
+var margin = {top: 40, right: 40, bottom: 230, left:150},
+width = 1000,
+height = 600;
 
 // append the svg object to the body of the page
 var svg = d3.select("#barchart")
@@ -30,7 +30,7 @@ svg.append("g")
 
 // Add Y axis
 var y = d3.scaleLinear()
-.domain([0, 3000])
+.domain([0, 30000])
 .range([ height, 0]);
 svg.append("g")
 .call(d3.axisLeft(y));
@@ -44,7 +44,7 @@ svg.selectAll("rect")
   .append("rect")
   .attr("x", function(d) { return x(d.university); })
   .attr("width", x.bandwidth())
-  .attr("fill", "#70e000")
+  .attr("fill", "#F4D03F")
   // if no bar at the beginning :
   .attr("height", function(d) { return height - y(0); }) 
   .attr("y", function(d) { return y(0);})
@@ -59,14 +59,14 @@ svg.selectAll("rect")
 
 function mousemove(event, d) {
 d3.select(this)
-.attr("fill","#55a630")
+.attr("fill","#E67E22")
 .attr("stroke-width", "1px")
 .attr("fill-opacity", "1");
 tooltip.style("display", "block")
 .style("top", event.pageY + "px")
 .style("left", event.pageX + "px")
 .html(
- "Size: <b>" +
+ "University Size: <b>" +
    d.size+
    "</b></br>Number of international students: <b>" +
    d.international_students+
@@ -77,7 +77,7 @@ tooltip.style("display", "block")
 
 function mouseover() {
   d3.select(this)
-    .attr("fill","#55a630")
+    .attr("fill","#E67E22")
     .attr("stroke-width", "1px")
     .attr("fill-opacity", "1");
   tooltip.style("opacity", 1)
@@ -86,13 +86,12 @@ function mouseover() {
 
 function mouseout() {
   d3.select(this)
-    .attr("fill", "#70e000")
+    .attr("fill", "#F4D03F")
     .attr("stroke-width", ".3")
     .attr("fill-opacity", "1");
   tooltip.style("display", "none");
 }
 
 });
-
 
 

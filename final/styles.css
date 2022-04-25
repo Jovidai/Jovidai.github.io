@@ -17,6 +17,18 @@ body {
     text-align: center;
   }
 
+#banner h1 {
+  font-size: 50px;
+  font-family: "rockwell";
+}
+
+#banner h2 {
+  font-family: "rockwell";
+}
+
+#banner h3 {
+  font-family: "rockwell";
+}
   
 
   @media (max-width: 600px) {
@@ -55,13 +67,14 @@ body {
     left: 0px;
     top: 0px;
     display: block;
-    font-family: 'Mukta', sans-serif;
+    font-family: 'rockwell', sans-serif;
     font-size: 10pt;
     background-color:#c7f9cc;
     padding: 2px;
     opacity: 0;
     pointer-events: none;
   }
+
 
   a:link {
     color:#cd395b; /* Uses Emancipator ROSE */
