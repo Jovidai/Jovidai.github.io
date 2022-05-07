@@ -7,12 +7,9 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
     //FOREACH
 
     data.forEach(function(d) {
-    d.university = parseFloat(d.university);
-    d.rank_display = parseFloat(d.rank_display);
-    d.country = parseFloat(d.country);
-    d.type = parseFloat(d.type);
-    d.faculty_count = parseFloat(d.faculty_count);
-   });
+        d.rank_display = parseFloat(d.rank_display);
+        d.faculty_count = parseFloat(d.faculty_count);
+    });
 
 
    drawBubbles(data);
@@ -24,9 +21,9 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
 
         // set the dimensions and margins of the graph
         var width = 1000
-        var height = 600
+        var height = 800
         
-        var margin = {left: 50, right: 50, top: 50, bottom: 50}
+        var margin = {left: 20, right: 20, top: 20, bottom: 20}
         var innerWidth = width;
         var innerHeight = height;
         
@@ -44,23 +41,20 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
         // A color scale
         var color = d3.scaleOrdinal()
         .domain([1, 2, 3, 4, 5, 6])
-        .range([ "#A569BD", "#1DB954", "#8E44AD","#41C817", "#6C3483", "#20AA2E"])
+        .range([ "#BB8FCE", "#A569BD", "#8E44AD","#7D3C98", "#6C3483", "#5B2C6F"])
         
         var radiusScale = d3.scaleLinear()
-        .domain([25, 80])
-        .range([30, 5]);
+        .domain([600, 10000])
+        .range([60, 20]);
         
         //Tooltip style
-        let tooltip = d3.select("#tooltip3").append("div")
-            .attr("class","d3-tooltip")
-            .style("position", "absolute")
+        let tooltip = d3.select("#tooltip3")
             .style("z-index", "10")
-            .style("visibility", "hidden")
             .style("padding", "30px")
             .style("background", "white")
             .style("border-radius", "20px")
             .style("color", "#121212")
-            .style("box-shadow","10px 5px 15px #6C3483")
+            .style("box-shadow","15px 10px 20px #6C3483")
             .style("font-family","futura");
         
         // Initialize the circle: all located at the center of the svg area
@@ -80,11 +74,11 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
         .on("drag", dragged)
         .on("end", dragended))
         
-        .on("mouseover", function(d) {
+        .on("mouseover", function(event, d) {
         tooltip.html(
         
         "University: <b>" +
-        d.university+
+        d.university +
         "</b></br>Country: <b>" +
         d.country+
         "</b></br>Rank: <b>" +
@@ -94,16 +88,16 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
         "</b></br>Numbers of faculty: <b>" +
         d.faculty_count+
         "</b>")
-        .style("visibility", "visible")
-        .style("top", d3.event.pageY + 10 + "px")
-        .style("left", d3.event.pageX + 10 + "px")
+        .style("opacity", 1)
+        .style("top", event.pageY + 10 + "px")
+        .style("left", event.pageX + 10 + "px")
         ;
         
         
-        console.log("hover");
+        console.log("hover", d);
         })
         .on("mouseout", function() {
-        tooltip.html(``).style("visibility", "hidden");
+        tooltip.html(``).style("opacity", 0);
         });
         
         //Circle labels
@@ -114,7 +108,7 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
         {
         return d.rank_display;
         })
-        .attr("baseline-shift", "-50%");
+        .attr("baseline-shift", "-35%");
         
         
         //Start simulation (collection of forces)
@@ -126,7 +120,7 @@ d3.csv("qs_world_university_rankings_2017_to_2022_V4.csv")
         .force("yCenter", d3.forceY(height/2).strength(.05))
         
         
-        //collision to avoid)
+        //Collision to avoid
         .force("noCollision", d3.forceCollide(function (d) {
         return radiusScale(d.faculty_count) + 3;
         }))

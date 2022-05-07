@@ -110,21 +110,19 @@ var svg = d3.select("#map1")
                   .style("display", "none");
                   })
                   
-                
+                  var zoom = d3.zoom()
+                  .translateExtent([[0, 0], [width, height]])
+                  .scaleExtent([1, 8]) // 8 means if the number is more bigger, you can zoom more in the map.
+                  .on("zoom", zoomed);
+      
+                   function zoomed(event) {
+                     map.attr("transform", event.transform);
+               }
+      
+                   svg.call(zoom);
                   });
 
 
-            var zoom = d3.zoom()
-            .translateExtent([[0, 0], [width, height]])
-            .scaleExtent([1, 8]) // 8 means if the number is more bigger, you can zoom more in the map.
-            .on("zoom", zoomed);
-
-             function zoomed(event) {
-               map.attr("transform", event.transform);
-         }
-
-             svg.call(zoom);
+           
           
       });
-
-         

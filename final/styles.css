@@ -69,10 +69,16 @@ body {
     display: block;
     font-family: 'rockwell', sans-serif;
     font-size: 10pt;
-    background-color:#c7f9cc;
-    padding: 2px;
+    background-color:white;
+    padding: 3px;
     opacity: 0;
     pointer-events: none;
+    border: 3px solid #8E44AD;
+  }
+
+  #tooltip3 {
+    position: absolute;
+    opacity: 0;
   }
 
 
@@ -88,4 +94,12 @@ body {
   a:hover {
     color:#1c1c1c;
     background-color: #ebf952; /*Sets background of link to Emancipator HIGHLIGHTER */
+}
+
+span.color1 {
+  color: #A569BD;
+}
+
+span.color2 {
+  color: #8E44AD;
 }

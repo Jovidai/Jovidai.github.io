@@ -59,6 +59,23 @@
 
 /* --------------  CSS STYLES FOR MY PAGE ------------------------------ */
 
+.emancipator-masthead {
+  height: 58px;
+  border: 1px solid #979797;
+  background-color: #31463f;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+      margin-bottom: 30px;
+      background-image: url("https://mediainnovation.camd.northeastern.edu/2022/emancipator/images/Emancipator_Logo_2c_Reversed.png");
+      background-size:contain;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+
 .headline h1 {
     position: 50px;
     color: #CD395B;
@@ -73,6 +90,7 @@
   position: relative;
   color:#31463F;
   font-size: 2em;
+  margin: auto;
   text-align: center;
 }
 
@@ -80,6 +98,29 @@
   font-size: 1.5em;
   text-align: center;
   font-style: italic;
+}
+
+.headline h4.overline {
+  font-family: "Staff-Bold","Arial",sans-serif;
+  font-size: 26px;
+  line-height: 24px;
+  color: #CD395B;
+  text-transform: uppercase;
+  letter-spacing: .75px;
+  text-align: center;
+}
+
+.headline p.byline {
+  font-family: "Staff-Regular","Arial",sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1c1c1c;
+  text-align: center;
+  }
+
+span.author {
+    font-family: "Staff-Bold","Arial",sans-serif;
+    color:#CD395B;
 }
 
 .header {
@@ -114,12 +155,14 @@ a:hover {
 
 figure {
   display: inline-block;
-  border: 1px dotted gray;
-  margin-left: 90;
+  border: 3px dotted gray;
+  margin-left: 300px;
+  margin-right: 300px;
 }
 
 
 figure figcaption {
+  color: #31463F;
   font-size: 20px;
   text-align: center;
 }
@@ -157,27 +200,26 @@ figure figcaption {
 }
 
 
-@media (max-width: 550px) {
-  .container {
-    width: 96%;
-    margin: 0 auto 0 auto;
-    background-color: #F6F2E1;
-  }
+@media (max-width:550px){
   .headline {
-    width: 96%;
-    margin: 0 auto 0 auto;
+      width: 95%;
+      margin: 0 auto;
+      }
+    .container {
+      width: 96%;
+      margin: 0 auto 0 auto;
+      background-color: #F6F2E1;
+      }
   }
-}
 
-
-@media (min-width: 551px) {
-  .container {
-    width: 73%;
-    margin: 0 auto 0 auto;
-    background-color: #F6F2E1;
-  }
+@media (min-width:551px){
   .headline {
-    width: 73%;
-    margin: 0 auto 0 auto;
+      width: 50%;
+      margin: 0 auto;
+      }
+  .container {
+       width: 73%;
+       margin: 0 auto 0 auto;
+       background-color: #F6F2E1;
+      }
   }
-}
