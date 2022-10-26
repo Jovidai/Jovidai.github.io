@@ -1,0 +1,62 @@
+body {
+    font-family: "Comic Sans MS";
+    margin: 0;
+  }
+  
+  #banner {
+    color: aliceblue;
+    background-color: "none";
+    background-image: url('http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRMp0PFUvYkXWWe6rM5b59FQxrJp9h6pXAT_UikwN3Tp075gi3xIR-gtUvb79AfmylO');
+    background-position: 50% 100%;
+    background-color: non-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 20vh 25px;
+    text-align: center;
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: row;
+    padding: 50px;
+  }
+  
+  .section p {
+    flex: 1;
+  }
+  
+  .section svg {
+    border: 1px solid red;
+    flex: 2;
+    height: 300px;
+    margin: 25px;
+  }
+  
+  @media (max-width: 600px) {
+    .section {
+      flex-direction: column;
+    }
+    .section svg {
+      flex: none;
+    }
+  }
+  
+  #tooltip {
+    background-color: #eeeeee;
+    border: 1px solid black;
+    display: none;
+    padding: 10px;
+    position: absolute;
+  }
+  
+ .container p {
+    color: #1c1c1c;
+    font-family: "Georgia","Times",serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.9;
+    margin: auto;
+    width: 80%;
+    text-indent: 2em;
+}
+  
