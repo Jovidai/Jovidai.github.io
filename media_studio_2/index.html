@@ -28,10 +28,60 @@
     <div class="container">
       <br>
       <center>
-        <h2>CRIME INCIDENT REPORTS (AUGUST 2015 - TO DATE) (SOURCE: NEW SYSTEM)</h2>
+        <h2>Introduction:</h2>
       </center>
       <br>
-      <p>Crime incident reports are provided by Boston Police Department (BPD) to document the initial details surrounding an incident to which BPD officers respond. This is a dataset containing records from the new crime incident report system, which includes a reduced set of fields focused on capturing the type of incident as well as when and where it occurred. Records in the new system begin in June of 2015.</p>
+      <p>Safety is essential for everyone, not only for daily life but also for work, study and residence. 
+        When people consider moving or changing a work/study environment, they often put the safety factor of the neighborhood as one of the most critical factors in the priority option. 
+        A neighborhood with a safe and low crime rate will be more popular with people because they do not need to worry about the occurrence of crimes, such as robbery, shooting and harassment, and so on.</p>
+      <br>
+      <p>US News recently rated Boston as the <a href="https://realestate.usnews.com/places/rankings/safest-places-to-live" target="new">13th safest place to live in America</a>, based upon crime statistics and residents’ own reports.
+        In essence, it is safer to live in Boston than in most cities of large size or larger. US News further reported that in 2020, the violent crime rate in Boston was lower than the national average, including not only big cities, but also small towns and rural areas.</p>             
+      <br> 
+      <p>According to the crime report of Boston released by the <a href="https://www.boston.gov/departments/police" target="new">Boston Police Department</a>, it shows that 3,885 overall crimes in 2021 compared to 4,354 in 2020, a roughly 10% decrease. The department reported 34 homicides in 2021 compared to 54 in 2020 and 233 rape incidents in 2021 compared to 181 in 2020.
+      </p>
+      <br>
+      <p>
+        As a student and office worker who pays attention to the safety factor of neighborhoods, and ordinary residents who often see robbery, shooting and other criminal incidents reported on the news, it is important for people living in Boston to know every neighborhood in Boston and me. [Add more: TK: It inspires me to do this study to gain some findings.]
+      </p>
+      <center>
+      <br>
+      <br>
+      <p>
+        <em><strong>*Notes: Because I am still processing the data analysis and doing the data visualization, most of the content is still in my RStudio, and I have not published them yet.
+                    Once I finish the data analysis and visualizations, then I will update them on this page and add paragraphs.</em></strong>
+      </p>
+    </center>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+      <center>
+        <h3>Boston Police Service Areas and Locations by District:</h3>
+        <img src="images/boston_police_districts.png" alt="Boston Police Service Areas and Locations." width="30%">
+        <figcaption><strong>Image source from the <a href="https://liveboston617.org/2021/07/01/boston-police-departments-bureaus-terms-slang-radio-codes-and-everything-in-between/" target="new">LIVE BOSTON</a>.</strong></figcaption>
+      <br>
+      <br>
+
+      <img src="images/boston_police_districts_names.png" alt="Boston Police Service Areas and Locations." width="40%">
+      </center>
+
+
+    </div>
+      
+    <br> 
+    <br>
+      <center>
+        <h2><strong>Part 1: Connected Scatter Plot: Analyze the total crime incidents in Boston from 2015 to 2022.</strong></h2>
+      </center>
+
+        <div class="container">
+          <br>
+          <center>
+            <h2>What is Crime Incident Reports? (AUGUST 2015 - TO DATE) (SOURCE: NEW SYSTEM)</h2>
+          </center>
+          <br>
+          <p text-align: left>Crime incident reports are provided by Boston Police Department (BPD) to document the initial details surrounding an incident to which BPD officers respond. This is a dataset containing records from the new crime incident report system, which includes a reduced set of fields focused on capturing the type of incident as well as when and where it occurred. Records in the new system begin in June of 2015.</p>
       <br>
       <p>The Analyze Boston Data Exports posted now are the updated incident data from the Mark43 RMS Database which launched in September of 2019 and is complete through present with the exclusion of data that falls under <a href="https://malegislature.gov/laws/generallaws/parti/titlevii/chapter41/section98f" target="new">MGL ch.41 s.98f</a>.
         The 2019 data that was originally posted contained combined exports from the Intergraph RMS and the Mark43 RMS during 2019 but the Extract/Transfer/Load process was not updated during the transition. We are continuing work on producing the gap data from January 2019 to September 2019 from our legacy Intregraph RMS and will be publishing this as soon as the work is complete.</p>             
@@ -40,21 +90,20 @@
       <p>Boston Crime Rate: Is Boston a Safe City? | 2022: https://www.covesmart.com/blog/boston-crime-rate-is-boston-a-safe-city/</p>
       <br>
       <p>
-        <em><strong>*Notes: Because I am still processing the data analysis and doing the data visualization, most of the content is still in my RStudio, and I have not published them yet.
-                    Once I finish the data analysis and visualizations, then I will update them on this page and add paragraphs.</em></strong>
-      </p>
-    </center>
-      <br> 
+      </center>
+          <br>
+          </div>
+      
+      <br>
       <center>
-        <h2><strong>Part 1: Connected Scatter Plot: Analyze the total crime incidents in Boston from 2015 to 2022.</strong></h2>
-        <br>
         <img src="images/boston_crime_total_analysis.png" alt="This is a part of analysis about crime in Boston from 2015 to 2022." width="50%">
       </center>
+      
       <br>
       <br>
       <br>
-
       <center>
+        <br>
         <img src="images/bostoncrime.png" alt="This chart shows the crime incidents in Boston from 2015 to 2022." width="50%">
         </center>
       </div>
@@ -64,6 +113,8 @@
       <div class="container">
         <center>
         <p>[I will add more paragraphs to analyze these charts to go deeper. TK]</p>
+        <br>
+        <p>[A barchart shows the total crime incidents each year to see the changes.]</p>
         </center>
       </div>
 
@@ -71,7 +122,6 @@
 
           <div class="container">
         
-        <br>
         <br>
         <br>
         <center>
@@ -100,6 +150,50 @@
           </center>
 
       </div>
+
+      <div class="container">
+        
+        <br>
+        <br>
+        <br>
+        <center>
+          <h2><strong>Part 4: Explore the employee earnings in Boston by the Boston Police Districts</strong></h2>
+
+        <div class="container">
+          <br>
+          <center>
+            <h2>What is Employee Earnings Report?</h2>
+          </center>
+          <br>
+          <p>Each year, the City of Boston publishes payroll data for employees. This dataset contains employee names, job details, and earnings information including base salary, overtime, and total compensation for employees of the City.</p>
+          <center>
+          <br>
+          </div>
+
+       
+          <br>
+          <br>
+        <center>
+          <img src="images/districts_zip_codes.png" alt="TK" width="50%">
+          <br>
+          <br>
+          </center>
+        <br>
+        <br>
+        <center>
+          <img src="images/total_earnings_by_districts.png" alt="TK" width="50%">
+          <br>
+          <br>
+          </center>
+      </div>
+
+      <br>
+      <br>
+      <div class="container">
+        <center>
+        <p>[Make a barchart to compare total crime incidents with totol empolyee earnings for each neighborhood by distructs. I will add more paragraphs to analyze these charts to go deeper. TK]</p>
+        </center>
+      </div>
      
       <div class="container">
         
@@ -107,7 +201,7 @@
         <br>
         <br>
         <center>
-          <h2><strong>Part 4: Other charts - by using D3 to make some interacive charts.</strong></h2>
+          <h2><strong>Part 5: Other charts - by using D3 to make some interacive charts.</strong></h2>
           </center>
 
       </div>
