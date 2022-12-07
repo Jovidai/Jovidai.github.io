@@ -81,13 +81,13 @@ d3.csv("FINAL_Boston_Median_Household_Income.csv")
         "Police District: <b>" +
         d.police_district +
         "</b></br>Neighborhood: <b>" +
-        d.neighborhood+
+        d.neighborhood +
         "</b></br>Zip code: <b>" +
-        d.zip_code+
+        d.zip_code +
         "</b></br>County: <b>" +
-        d.county+
+        d.county +
         "</b></br>City: <b>" +
-        d.city+
+        d.city +
         "</b></br>2020 Median Household Income: $<b>" +
         d.total_of_2020_median_household_income  +
         "</b></br>2015 Median Household Income: $<b>" +

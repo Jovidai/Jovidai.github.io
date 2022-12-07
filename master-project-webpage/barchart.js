@@ -50,7 +50,7 @@ barChartSvg.append("text")
     .attr("text-anchor", "middle")
     .attr("x", 500)
     .attr("y", -60)
-    .text("Incldues murder and other crimes -- ")
+    .text("Includes murder and other crimes -- ")
     .style("font-family","Source Serif Pro, serif")
     .style("font-size", "25px")
     .style("fill", "#34495E");
