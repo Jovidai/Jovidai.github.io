@@ -34,7 +34,7 @@ barChartSvg.append("text")
     .attr("text-anchor", "middle")
     .attr("x", 165)
     .attr("y", 570)
-    .text("Source: City of Boston • Graphic: ZhaoZhou Dai")
+    .text("Source: City of Boston • Graphic: Zhaozhou Dai")
     .style("font-family","Source Serif Pro, serif");
 
 barChartSvg.append("text")
