@@ -59,3 +59,15 @@ body {
     width: 80%;
     text-indent: 2em;
 }
+
+#banner {
+  color: aliceblue;
+  background-color: "none";
+  background-image: url('https://t4.ftcdn.net/jpg/03/73/69/15/360_F_373691571_yPh656GN7OkO0ICuBvn1d1duJryAr7pf.jpg');
+  background-position: 50% 100%;
+  background-color: non-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 20vh 25px;
+  text-align: center;
+}

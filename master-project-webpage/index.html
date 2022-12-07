@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ZhaoZhou Dai's Master Project</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Martel:wght@300;700&family=Source+Sans+3:ital,wght@0,400;1,600&family=Source+Serif+Pro:wght@400;600&display=swap');
+    </style>
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <link rel="icon" type="image/x-icon" href="images/icon.jpeg">
+    
+</head>
+<body>
+    <main>
+        <section id="scrolly">
+          <div class="sticky-thing">
+            <h3></h3>
+          </div>
+         
+          <article>
+           <!-- Use this one as the beginning content: https://m.uhomes.com/news/3381.html -->
+           <!-- Use "Politics in this link: https://baike.baidu.com/item/%E6%B3%A2%E5%A3%AB%E9%A1%BF/81031#reference-[12]-11091760-wrap"-->
+            <div class="step" data-step="1" data-bg="url(images/scroll-1/1.jpg)" data-tx="Boston in the Spring by Werner's World is licensed under CC BY-SA 2.0.">
+              <p>Spanning over 90 miles, Boston has a population density of <b>14,218</b> people per square mile. The <a href="https://worldpopulationreview.com/us-cities/boston-ma-population" target="new">average household income in Boston</a> is <b>$107,608</b> in 2022, with a poverty rate of <b>17.96%</b>; meanwhile, the <a href="https://www.census.gov/library/stories/2022/10/poverty-rate-varies-by-age-groups.html#:~:text=U.S.%20Poverty%20Rate%20Is%2012.8%25%20but%20Varies%20Significantly%20by%20Age%20Groups&text=A%20.,organization%20in%20the%20United%20States." target="new">U.S. poverty rate</a> is <b>12.8%</b>.</p>
+            </div>
+            <div class="step" data-step="2" data-bg="url(images/scroll-1/2.jpg)" data-tx="Boston on the Fringe of Sunset by Trey Ratcliff is licensed under CC BY-NC-SA 2.0.">
+              <p>The <a href="https://www.rentcafe.com/average-rent-market-trends/us/ma/boston/" target="new">average rent</a> for an apartment in Boston is <b>$3,772</b>; however, the <a href="https://www.mass.gov/info-details/massachusetts-law-about-minimum-wage#:~:text=Effective%20January%201%2C%202022%2C%20the,the%20service%20rate%20is%20%246.75." target="new">minimum wage</a> is <b>$14.25</b> per hour in Boston.
+              </p>
+            </div>
+            <div class="step" data-step="3" data-bg="url(images/scroll-1/3.jpg)" data-tx="Emperial Garden in Boston by Werner's World is licensed under CC BY-NC-SA 2.0.">
+              <p>Boston, Massachusetts's <a href="https://www.payscale.com/cost-of-living-calculator/Massachusetts-Boston" target="new">cost of living</a> is <b>53%</b> higher than the national average, including housing, utility, transportation and grocery prices. 
+                Importantly, Boston still has <b>1,545</b> <a href="https://www.boston.gov/news/mayor-michelle-wu-leads-42nd-annual-homelessness-census" target="new">homeless people</a> in 2022.</p>
+            </div>
+            <div class="step" data-step="4" data-bg="url(images/scroll-1/4.jpg)" data-tx="Boston Skyline by monkeyatlarge is licensed under CC BY 2.0.">
+              <p>In 2021, <b>694,050</b> <a href="https://crime-data-explorer.fr.cloud.gov/pages/explorer/crime/crime-trend" target="new">violent-crime incidents</a> and <b>817,020</b> offenses were reported in the United States.
+              </p>
+            </div>
+            <div class="step" data-step="5" data-bg="url(images/scroll-1/5.jpg)" data-tx="Scene Of The Crime by ojbyrne is licensed under CC BY 2.0.">
+              <p>The shrinking middle class in America, rising housing costs, rising inflation, etcetera — begin to show that if crime can be influenced by income, our median household income is impacted by broader, sweeping societal factors in America.</p>
+            </div>
+            <div class="step lastone" data-step="5" data-bg="url(images/frontpage_2.jpg)" data-tx="Photo by ZhaoZhou Dai">
+              <div class='title-container'>
+                <div class='image-text'>
+                    <h4>Crime | Median Household Income | Boston</h4>
+                    <h1> Crime & how it correlates to median household income in Boston</h1>
+                    <h2>Many factors influence crime rates in a neighborhood, but median household income is a crucial indicator.</h2>
+                    <p class='byline'>By ZhaoZhou Dai</p>
+                </div>
+            </div>
+            </div>
+          </article>
+        </section>
+  
+        <section id="outro"></section>
+    </main>
+  
+      <!-- <div class='debug'></div> -->
+      <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+      <script src="https://unpkg.com/scrollama"></script>
+      <script>
+        // using d3 for convenience
+        var main = document.querySelector("main");
+        var scrolly = main.querySelector("#scrolly");
+        var sticky = scrolly.querySelector(".sticky-thing");
+        var article = scrolly.querySelector("article");
+        var steps = article.querySelectorAll(".step");
+  
+        // initialize the scrollama
+        var scroller = scrollama();
+  
+        // scrollama event handlers
+        function handleStepEnter(response) {
+          // response = { element, direction, index }
+          var el = response.element;
+  
+          // remove is-active from all steps
+          // then add is-active to this step
+          steps.forEach(step => step.classList.remove('is-active'));
+          el.classList.add('is-active');
+  
+          // update graphic based on step
+          sticky.style.backgroundImage = el.dataset.bg;
+          sticky.querySelector("h3").innerText = el.dataset.tx;
+        }
+  
+        function init() {
+          // 2. setup the scroller passing options
+          // 		this will also initialize trigger observations
+          // 3. bind scrollama event handlers (this can be chained like below)
+          scroller
+            .setup({
+              step: "#scrolly article .step",
+              offset: 0.7,
+              debug: false
+            })
+            .onStepEnter(handleStepEnter);
+  
+          // setup resize event
+          window.addEventListener("resize", scroller.resize);
+        }
+  
+        // kick things off
+        init();
+      </script>
+    <div class='main-container'>
+        <p class="firstpara">The relationship between poverty levels and crime rates is an issue debated by many sociologists, economists and criminologists nowadays.</p>
+        <p>Some argue that poverty is "closely" related to crime because people below the poverty line are less likely to be educated, are often under more pressure, and are willing to do whatever it takes to acquire the essential possessions needed to survive.</p>
+        <p>Others point to the recent recession and note that crime rates declined during that time, suggesting that there is no simple relationship between poverty levels and crime rates.</p>
+        <p>"In the field of urban analysis, crime is an important phenomenon that needs attention and research," Christopher Bruell said. "So, there have been many studies that have been conducted on it, providing us with some references."</p>
+        <p>Bruell, associate teaching professor of criminology and criminal justice at Northeastern University, focuses on evaluation research, intersectionality and the criminal justice system, and the role of social support in criminal offending.</p>
+        <p>He said safety is essential for everyone, not only for daily life but also for work, study and residence.</p>
+        <p>"When people consider moving or changing a work and study environment, they often put the safety factor of the neighborhood as one of the most critical factors in the priority option," Bruell said.</p>
+        <p>In 2021, the <a href="https://www.boston.com/culture/lifestyle/2016/01/29/can-you-say-youre-from-boston-if-you-dont-actually-live-in-boston/">most recent year with available data</a>, there were 16.5 violent crimes for every 1,000 Americans ages 12 and older. 
+          That was statistically unchanged from the year before, below pre-pandemic levels and far below the rates recorded in the 1990s, according to the <a href="https://bjs.ojp.gov/data-collection/ncvs">National Crime Victimization Survey</a>.</p>
+        <p>Professor Patrice Collins gave an opinion on the relationship between crime and median household income.</p>
+        <p>Collins, assistant professor of criminology and criminal justice and cultures, societies and global studies in the College of Social Sciences and Humanities at Northeastern University.</p>
+        <p>"I hypothesize that as poverty levels rise, crime rates will rise as well," she said.</p>
+        <p>She said she believes this because the poor are less likely to be educated, maybe more hungry for money, and may even turn to drugs, which would lead to higher crime rates.</p>
+        
+        <p><img src="images/first_image.jpg"></p>
+        <p class="imageCredit">Source: <a href="https://www.boston.com/culture/lifestyle/2016/01/29/can-you-say-youre-from-boston-if-you-dont-actually-live-in-boston/">BOSTON.COM</a></p>
+        <p>The Boston Police Department <a href="https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system">(BPD)</a> provides crime incident reports to document the initial details surrounding an incident to which BPD officers respond.</p>
+        <p>This is a dataset containing records from the new crime incident report system, which includes a reduced set of fields focused on capturing the type of incident as well as when and where it occurred. (Records begin in June 2015 and continue to October 2022.) </p>
+        <p>Violent crimes in Boston increased slightly in the first half of this year, 2022, compared with the first half of the last year, 2021, while murder, rape and robbery cases decreased, according to <a href="https://majorcitieschiefs.com/wp-content/uploads/2022/08/MCCA-Violent-Crime-Report-2022-and-2021-Midyear.pdf">an annual midyear survey</a> of police departments in major cities.</p>
+        <p>District code is hard to understand precisely which area it is, so adding neighborhood names to analyze these districts in Boston.</p>
+
+        <br>
+       
+          <p><strong>Boston Police Service Areas and Locations by District:</strong></p>
+          <p><img src="images/boston_police_districts.png"></p>
+        <br>
+          <p><img src="images/boston_police_districts_names.png"></p>
+          <p class="imageCredit">Source: <a href="https://liveboston617.org/2021/07/01/boston-police-departments-bureaus-terms-slang-radio-codes-and-everything-in-between/">Boston Police Department</a></p>
+
+      <P>The above two charts of Boston police service areas and locations show that there are 12 police districts in Boston, and the local police department manages each district.</P>
+      <p>Understanding how the total number of crimes in Boston has changed in recent years is essential for the public to know whether Boston is becoming safer or vice versa. First of all, exploring the changes in the total number of crimes in Boston for each of the eight years from 2015 to 2020.</p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+
+
+    <div id="banner">
+      <!--JavaScript files-->
+      <script src="./banner.js"></script></script>
+       <!--JavaScript files-->
+      <svg id="barchart"></svg>
+      <g id="this"></g>
+      <g id="rect"></g>
+      <g id="x"></g>
+      <g id="y"></g>
+        <!-- <rect id="bar" fill="white" /> -->
+      </div>
+
+      </svg>
+      <!--JavaScript files-->
+     <script src="./barchart.js"></script>
+
+      <div id = "tooltip2"></div>
+
+  <!-- Above is D3 -->
+
+  <div class="main-container">
+    <br>
+    <br>
+    <p>Based on the data shown in the bar chart above, it is clear that in the past eight years, the number of crimes in 2016 was the highest, reaching 46,828; however, as of October 2022, the number of crimes in 2022 was the lowest. However, it is worth noting that the number of crimes each year since 2016 has decreased yearly.</p>
+    <p>In order to have a further understanding of the crime situation in each neighborhood of Boston for each of the eight years from 2015 to 2022, it is important to compare the number of crimes in each of Boston's neighborhoods according to the previously listed <strong>Boston Police Districts</strong>.</p>
+    <p>The 12 districts represent each neighborhood are:</p>
+      <p>	◉ A-1: Downtown, North End & Waterfront, West End, China Town, Theater District, Boston Commons, Beacon Hill</p>
+        <p>◉ A-15: Charlestown; ◉ A-7: East Boston; ◉ B-2: Roxbury; B-3: Mattapan</p>
+        <p>◉ C-6: South Boston; ◉ C-11: Dorchester; ◉ D-4: South End</p>
+        <p>◉ D-14: Allston & Brighton; ◉ E-5: West Roxbury & Roslindale</p>
+        <p>◉ E-13: Jamaica Plain; ◉ E-18: Hyde Park</p>
+        </p>
+
+    <p><img src="images/bostoncrime.png"></p>
+    <br>
+    <p>From 2015 to 2022, the overall number of crimes in each neighborhood is declining, with the number of crimes in all Boston neighborhoods in 2016 being the highest in eight years, followed by a decreasing number each year. However, it is worth noting that the three neighborhoods of <b>Roxbury (B-2)</b>, <b>South End (D-4)</b>, and <b>Dorchester (C-11)</b> have been ranked in the top three in terms of total crime.</p>
+    <p>The violent crime rate in the United States in 2021 was 395.7 cases per 100,000 of the population. Even though the violent crime rate has been decreasing since 1990, the United States tops the ranking of countries with the most prisoners.</p>
+    <p>U.S. News & World Report recently rated Boston as the <a href="https://realestate.usnews.com/places/rankings/safest-places-to-live">13th safest place to live in America</a>, based on crime statistics and residents’ reports. In essence, it is safer to live in Boston than in most cities of significant size or larger.</p>
+    <p>According to the crime report of Boston released by the <a href="https://www.boston.gov/departments/police">Boston Police Department</a>, it shows that 3,885 overall crimes in 2021 compared to 4,354 in 2020, a roughly 10% decrease. The department reported 34 homicides in 2021 compared to 54 in 2020 and 233 rape incidents in 2021 compared to 181 in 2020.</p>
+    <p>Compare the crime rates of the whole country of the U.S. and Boston horizontally, in 2021, 694,050 violent-crime incidents and 817,020 offenses were reported in the United States by 11,794 law enforcement agencies that submitted <a href="https://bjs.ojp.gov/national-incident-based-reporting-system-nibrss">National Incident-Based Reporting System (NIBRS)</a> data and covering 64% of the total population.</p>
+
+    <p><img src="images/boston_crime_top_ten_plot.png"></p>
+    <br>
+    <p>The main types of crimes from 2015 to 2020 in the 12 districts above show that "Larceny" has the highest number of crimes, followed by "Drug Violation."</p>
+    <p>“We did research at our crime lab, and we found that making up nearly 60% of all crimes committed within one given year,” Bruell said. “Larceny and theft affect an estimated 7 million people yearly.”</p>
+    <p>He said the 1.6% increase in the overall violent crime rate was driven by a slight uptick in aggravated assaults, from 1,138 by the middle of last year to 1,207 by June 2022.</p>
+    <p>Besides, Bruell pointed out that the homicide rate in Boston was down 38% from last year, with 13 reported through June, compared with 21 in the same time frame last year.</p>
+    <p>An <a href="https://majorcitieschiefs.com/wp-content/uploads/2022/08/MCCA-Violent-Crime-Report-2022-and-2021-Midyear.pdf">annual mid-year survey</a> of major city police departments shows that violent crime in Boston rose slightly in the first half of this year compared to the first half of last year, while homicides, rapes and robberies declined.</p>
+    <p>It is worth noticing that Robberies were down 6.4% from 357 to 334 in 2022.</p>
+    <p>Keith Harries in the article “<a href="https://www.researchgate.net/publication/265925868_Property_Crimes_and_Violence_in_United_States_An_Analysis_of_the_Influence_of_Population_Density">Property Crimes and Violence in United States: An Analysis of the Influence of Population Density</a>” pointed that most type of crime tend to increase in levels of occurrence with increasing population density, but this relationship could be moderated by socioeconomic status.</p>
+    <p>Harries, who is the author of the <i>Crime and the Environment</i>, has the concentration in crimes and violence in United States.
+    </p>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+
+  <!-- Bubble chart -->
+  <div class="section">
+    <center><h2>Demographics of Median Household Income</h2></center>
+    <center><h2>in 2015 and 2020 in Boston</h2></center>
+    <center><p>The district B-3 had the lowest income in both 2015 and 2020.</p></center>
+    <svg id="chart2"></svg>
+    <center><p>Source: U.S. Bureau of Labor Statistics • Graphic: ZhaoZhou Dai</p></center>
+    <center><p><i><b>*Note:</b> The total population of race and ethnicity determines the radius scale of bubbles.</i></p></center>
+    <center><i>The colors of bubbles used 12 different colors according to the districts.</i></center>
+    <g id="circle"></g>
+      <!-- <rect id="bar" fill="white" /> -->
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+ 
+  
+
+    </svg>
+
+    <!--JavaScript files-->
+    <script src="./chart2.js"></script> 
+
+    
+
+    <div id = "tooltip3"></div>
+     
+
+<!-- Above is D3 -->
+
+    <div class="main-container">
+      <section id="scrolly3" class="side-by-side">
+      <div class="sticky-thing3">
+    
+        <div class="ai2html-container">
+
+<!-- ai2html goes below this line -->
+
+<!-- Generated by ai2html v0.115.1 - 2022-11-22 15:16 -->
+<!-- ai file: NEW.ai -->
+<style media="screen,print">
+	#g-NEW-box ,
+	#g-NEW-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-NEW-box p {
+		margin:0;
+	}
+	#g-NEW-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-NEW-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-NEW-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-NEW-box .g-aiPointText p { white-space: nowrap; }
+	#g-NEW-Artboard_1 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-NEW-Artboard_1 p {
+		font-family:arial,helvetica,sans-serif;
+		line-height:14px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:12px;
+		text-align:left;
+		color:rgb(162,162,162);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-NEW-Artboard_1 .g-pstyle0 {
+		height:14px;
+	}
+	#g-NEW-Artboard_1 .g-pstyle1 {
+		font-weight:500;
+		line-height:10px;
+		height:14px;
+		font-size:14px;
+		color:rgb(0,0,0);
+	}
+	#g-NEW-Artboard_1 .g-pstyle2 {
+		height:14px;
+		color:rgb(116,116,116);
+	}
+	#g-NEW-Artboard_1 .g-pstyle3 {
+		height:14px;
+		letter-spacing:-0.07em;
+		color:rgb(116,116,116);
+	}
+
+</style>
+
+<div id="g-NEW-box" class="ai2html">
+<h2 class='chart-title'>District A-1 had the highest median household income in both 2015 and 2020, while district B-3 had the lowest</h2>
+<h2 class='sub-title'>Although the impact of COVID-19 in 2020 caused many people to lose their jobs, resulting in a decrease in total income, these <span style="border-style: dashed; border-color:#fb8500">12 districts still increased in 2020</span> compared to the median household income in 2015.</h2>
+<!-- Artboard: Artboard_1 -->
+<div id="g-NEW-Artboard_1" class="g-artboard" style="max-width: 600px;max-height: 500px" data-aspect-ratio="1.2" data-min-width="0">
+  <div style="padding: 0 0 83.3333% 0;"></div>
+      <img id="g-NEW-Artboard_1-img" class="g-NEW-Artboard_1-img g-aiImg" alt="" src="NEW-Artboard_1.png"/>
+      <!-- <div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:12.2416%;margin-top:-10.5px;left:1.0949%;width:70px;">
+        <p class="g-pstyle0">700,000</p> 
+      </div> -->
+      <div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:21.649%;margin-top:-10.5px;left:1.0752%;width:70px;">
+        <p class="g-pstyle0">$700,000</p>
+      </div>
+      <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:40.3371%;margin-top:-11.2px;left:89.2026%;width:83px;">
+        <p class="g-pstyle1">$46,845</p>
+      </div>
+      <div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:30.7204%;margin-top:-10.5px;left:1.0949%;width:70px;">
+        <p class="g-pstyle0">$600,000</p>
+      </div>
+      <div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:39.9599%;margin-top:-10.5px;left:1.0752%;width:70px;">
+        <p class="g-pstyle0">$500,000</p>
+      </div>
+      <div id="g-ai0-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:49.7033%;margin-top:-10.5px;left:1.0949%;width:70px;">
+        <p class="g-pstyle0">$400,000</p>
+      </div>
+      <div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:60.8556%;margin-top:-11.2px;left:93.2155%;width:62px;">
+        <p class="g-pstyle1">2020</p>
+      </div>
+      <div id="g-ai0-7" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:58.2708%;margin-top:-10.5px;left:1.0752%;width:70px;">
+        <p class="g-pstyle0">$300,000</p>
+      </div>
+      <div id="g-ai0-8" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:64.8953%;margin-top:-11.2px;left:92.5851%;width:62px;">
+        <p class="g-pstyle1">2015</p>
+      </div>
+      <div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:67.3422%;margin-top:-10.5px;left:1.1425%;width:70px;">
+        <p class="g-pstyle0">$200,000</p>
+      </div>
+      <div id="g-ai0-10" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:77.4136%;margin-top:-10.5px;left:5.8774%;width:29px;">
+        <p class="g-pstyle0">0</p>
+      </div>
+      <div id="g-ai0-11" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:11.0693%;width:43px;">
+        <p class="g-pstyle2">A-1</p>
+      </div>
+      <div id="g-ai0-12" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:17.8404%;width:50px;">
+        <p class="g-pstyle2">A-15</p>
+      </div>
+      <div id="g-ai0-13" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:25.5003%;width:43px;">
+        <p class="g-pstyle2">A-7</p>
+      </div>
+      <div id="g-ai0-14" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:32.7173%;width:43px;">
+        <p class="g-pstyle2">B-2</p>
+      </div>
+      <div id="g-ai0-15" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:39.9336%;width:43px;">
+        <p class="g-pstyle2">B-3</p>
+      </div>
+      <div id="g-ai0-16" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:46.7178%;width:36px;">
+        <p class="g-pstyle2">C-</p>
+      </div>
+      <div id="g-ai0-17" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:48.3959%;width:29px;">
+        <p class="g-pstyle3">1</p>
+      </div>
+      <div id="g-ai0-18" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:49.1626%;width:29px;">
+        <p class="g-pstyle2">1</p>
+      </div>
+      <div id="g-ai0-19" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:54.3186%;width:44px;">
+        <p class="g-pstyle2">C-6</p>
+      </div>
+      <div id="g-ai0-20" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:61.0912%;width:51px;">
+        <p class="g-pstyle2">D-14</p>
+      </div>
+      <div id="g-ai0-21" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:68.7494%;width:44px;">
+        <p class="g-pstyle2">D-4</p>
+      </div>
+      <div id="g-ai0-22" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:75.5648%;width:50px;">
+        <p class="g-pstyle2">E-13</p>
+      </div>
+      <div id="g-ai0-23" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:82.7791%;width:50px;">
+        <p class="g-pstyle2">E-18</p>
+      </div>
+      <div id="g-ai0-24" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:80.7655%;margin-top:-10.5px;left:90.4391%;width:43px;">
+        <p class="g-pstyle2">E-5</p>
+      </div>
+    </div>
+  </div>
+
+<!-- End ai2html -->
+
+
+
+<!-- ai2html goes above this line -->
+
+        </div>
+      </div>
+
+      <div class="scrolly-overlay3">
+        <div class="step3" id="step3-zero">
+          <p>There are 273,188 households in Boston, each comprising around two members. Family establishments represent 47.61% of these Boston households, while non-family units account for the remaining 52.39%. Additionally, 21.41% of households have children, and 78.59% are without children.</p>
+        </div>
+        <div class="step3" id="step3-one">
+          <p>The average annual household income in Boston is <span style="background: #1F618D; color: white">$113,307</span>, while the median household income is <span style="background: #1F618D; color: white">$76,298</span> per year. Residents aged 25 to 44 earn <span style="background: #1F618D; color: white">$99,090</span>, while those between 45 and 64 have a median wage of <span style="background: #1F618D; color: white">$79,424</span>. In contrast, people younger than 25 and those older than 65 earn less, at <span style="background: #1F618D; color: white">$35,829 and $38,908</span>, respectively.
+          </p>
+        </div>
+        <div class="step3" id="step3-two">
+          <p>For the total median household income in <span style="background: #219ebc">2020</span> and <span style="background: #8ecae6">2015</span>, the average of the 2020 and 2015 median household income in Boston is <span style="background: #219ebc">$214821.4167</span> and <span style="background: #8ecae6">$169831.4167</span>, respectively.</p>
+        </div>
+        <div class="step3" id="step3-three">
+          <p>In <span style="background: #219ebc">2016 - 2020</span> of the Boston median household income, the per capita income in the past 12 months (in 2020 dollars) was <span style="background: #FFB703">$46,845</span>.</p>
+        </div>
+      </div>
+      </section>
+
+      <script>
+
+    function hideNote() {
+  d3.select("#line-1").classed('hidden', true)
+      d3.select("#line-2").classed('hidden', true)
+      d3.select("#line-3").classed('hidden', true)
+  d3.select("#main-1").style('opacity', '1')
+  d3.select("#main-2").style('opacity', '1')
+      d3.select("#main-3").style('opacity', '1')
+  d3.selectAll("#text-1").style('opacity', '1')
+  d3.select("#text-2").style('opacity', '1')
+      d3.select("#text-3").style('opacity', '1')
+    }
+    
+    /* Scrollytelling code goes under here */
+    hideNote()
+
+    d3.select("#step3-one").on('stepout', function(e) {
+      if(e.detail.direction === 'up') {
+        // undo the changes from step one
+        hideNote()
+      }
+    })
+
+    d3.select("#step3-one").on('stepin', function(e) {
+      // undo changes from step two
+      // do changes for step one
+      d3.select("#line-1").classed('hidden', false)
+      d3.select("#line-2").classed('hidden', true)
+      d3.select("#line-3").classed('hidden', true)
+  d3.select("#main-1").style('opacity', '1')
+  d3.select("#main-2").style('opacity', '0.2')
+      d3.select("#main-3").style('opacity', '0.2')
+  d3.selectAll("#text-1").style('opacity', '1')
+  d3.select("#text-2").style('opacity', '0.2')
+      d3.select("#text-3").style('opacity', '0.2')
+    })
+
+    d3.select("#step3-two").on('stepin', function(e) {
+
+      // undo changes from step one
+      // do changes for step two
+  d3.select("#line-1").classed('hidden', true)
+      d3.select("#line-2").classed('hidden', false)
+      d3.select("#line-3").classed('hidden', false)
+  d3.select("#main-1").style('opacity', '0.2')
+  d3.select("#main-2").style('opacity', '1')
+      d3.select("#main-3").style('opacity', '1')
+  d3.selectAll("#text-1").style('opacity', '0.2')
+  d3.select("#text-2").style('opacity', '1')
+      d3.select("#text-3").style('opacity', '1')
+    })
+
+    d3.select("#step3-three").on('stepin', function(e) {
+      // undo changes from step two
+  d3.select("#line-1").classed('hidden', true)
+      d3.select("#line-2").classed('hidden', false)
+      d3.select("#line-3").classed('hidden', true)
+  d3.select("#main-1").style('opacity', '0.2')
+  d3.select("#main-2").style('opacity', '1')
+      d3.select("#main-3").style('opacity', '0.2')
+  d3.selectAll("#text-1").style('opacity', '0.2')
+  d3.select("#text-2").style('opacity', '1')
+      d3.select("#text-3").style('opacity', '0.2')
+    })
+
+
+      </script>
+
+      <script>
+  const scroller3 = scrollama();
+
+scroller3
+  .setup({
+    step: "#scrolly3 .scrolly-overlay3 .step3",
+    offset: 0.5,
+    debug: false
+  })
+  .onStepEnter(function({ element, index, direction}) {
+    const event = new CustomEvent('stepin', { detail: { direction: direction } })
+    element.dispatchEvent(event);
+  })
+  .onStepExit(function({ element, index, direction }) {
+    const event = new CustomEvent('stepout', { detail: { direction: direction } })
+    element.dispatchEvent(event);
+  });
+
+window.addEventListener("resize", scroller3.resize);
+      </script>
+    </div>
+   <!-- <div id="map"></div> -->
+    <div id='story'></div>
+    <!-- <script src='config.js'></script>  -->
+     <!-- <script src="./map.js"></script> -->
+
+
+     <div class="main-container">
+      <p style="text-align:center;margin-top:0px; padding-top:50px; padding-bottom:10px">Scroll to see its range map of crime with median household income in 2015 and 2020 for each district<br>▼</p>
+      </div>
+      
+     <br>
+     <br>
+
+
+      <div class="main-container">
+        <h1>Compared with the crime incidents and median household income in 2015 and 2020</h1>
+      </div>
+    
+     <center><img src="images/map_crime_income.png"></center>
+
+     <div class="main-container">
+     <br>
+     <br>
+     <p>In 2015, the top three districts in terms of total crime were <b>D-4 (South End)</b>, <b>B-2 (Roxbury)</b> and <b>C-11 (Dorchester)</b>, while the bottom three districts in terms of median household income were <b>B-3 (Mattapan)</b>, <b>B-2 (Roxbury)</b> and <b>E-18 (Hyde Park)</b>. It is worth noting that the B-3 district had a higher number of crimes and a lower median household income. </p>
+     <p>The top three districts in terms of total crime in 2020 were <b>D-4 (South End)</b>, <b>B-2 (Roxbury)</b> and <b>C-11 (Dorchester)</b>, while the bottom three districts in terms of median household income were <b>B-3 (Mattapan)</b>, <b>B-2 (Roxbury)</b> and <b>E-18 (Hyde Park)</b>. Compared to 2015, there was still a phenomenon that the number of crimes was higher in places with lower median household income in 2020.</p>
+     <p>In a <a href="https://message.worldbank.org/isp_error_page.htm">2002 study by World Bank</a>, economists Pablo Fahnzelber, Daniel Lederman and Norman Loiza found that crime rates and inequality positively correlate within and between countries. The correlation is a causal one - inequality leads to crime rates.</p>
+     <p>This finding coincides with American economist Gary Becker's theory of crime. Becker claims that rising income inequality can have a significant and powerful effect on rising crime rates. Not only that, but a country's economic growth significantly impacts reducing crime rates.</p>
+     <p>Since a reduction in income disparity and economic affluence has a mitigating effect on poverty levels, this means that poverty alleviation has a crime-reducing effect.</p>
+     </div>
+
+
+    <br>
+    <br>
+    <br>
+    </rb>
+    <div class="main-container">
+
+      <div class="row">
+        <div class="column">
+          <div class="flourish-embed flourish-chart" data-src="visualisation/12009105"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+        </div>
+        <div class="column">
+          <div class="flourish-embed flourish-chart" data-src="visualisation/12009284"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <p>After comparing two graphs on the relationship between crime incidents and median household income horizontally, the above charts show that most districts with a high number of crime incidents have correspondingly low median household income, such as B-2 (Roxbury), B-3 (Mattapan) and C-11 (Dorchester).</p>
+      <p>On the contrary, districts with a low number of crime incidents have correspondingly high median household income. If crime incidents are low, but their median household income is high.</p>
+      <p>Based on results from the charts "The Relationship Between Crime Incidents and Median Household Income in 2015 and 2020," Phil He elaborated on his point of view.</p>
+      <p>He, a criminology and criminal justice professor at Northeastern University, is vice-chairman of the Asian criminological society supervisory board.</p>
+      <p>"The analysis could have been clearer and more simplified," he said. "But the problem now lies in the two factors that can produce the desired effect, namely, poverty reduction and crime reduction."</p>
+      <p>He said, however, that the reality is that economic growth has been erratic, and income inequality has increased.</p>
+      <p>“The United States is a developed country,” he said. “But it ranks third most unequal in income and worst in income gap growth, as well as having the highest percentage of the prison population among industrialized democracies.”</p>
+      <p>He said the Boston government should focus on reducing poverty and unemployment rates in order to lower the crime rate in Boston and make our society safer and better.</p>
+      <p>Increased crime rates due to low income have been one of the critical issues to address in the 12 districts of Boston. </p>
+      <p>According to <a href="https://www.economist.com/graphic-detail/2018/06/07/the-stark-relationship-between-income-inequality-and-crime">The Economist</a>, there is a clear relationship between income inequality and crime.</a></p>
+      <p>“The connection between income inequality and the crime rate is a subject that has baffled many social scientists, economists, and even those in the legal and justice systems,” Allan Jay said, who is FinancesOnline’s resident B2B expert with over a decade of experience in the SaaS space to work on crime and economics data.</p>
+      <p>He said the reason is recent developments in these two issues: in the United States, the crime rate has declined since the 1960s. On the other hand, since the 1970s, income inequality has been soaring.</p>
+      <p>“Many experts even cite factors such as inflation, purchasing power, the consumer price index, and the faster widening of the wealth distribution gap over the past few years,” Jay said. “Such as differences in currency valuations over time.”</p>
+      <p>He said police enforcement, changes in the legal and judicial systems, and general advances in education, values, and social norms and behaviors affect crime rates, but the median household income is still an essential factor for the crime.</p>
+      <p><img src='images/final_image.jpg'></p>
+      <p class='imageCredit' style="padding-bottom:100px"> "<a href="https://www.flickr.com/photos/24528911@N05/3120218477m">Map showing the terminal facilities of Boston</a>" by <a href="https://data.boston.gov/">Norman B. Leventhal Map Center at the BPL</a> is licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">CC BY 2.0</a>.</p>
+    </div>
+    <div id="footer-box">
+        <p>These charts and maps are based on data by the <a href="https://data.boston.gov/">Analyze Boston</a>, <a href="https://www.census.gov/">United States Census Bureau</a>, <a href="https://catalog.data.gov/dataset">Data.gov</a> and is for the MS in Media Innovation and Data Communication degree for the <a href="https://camd.northeastern.edu/journalism/">School of Journalism at Northeastern University</a>.</p>
+        <p>Special thanks to all professors and all other sources.</p>
+        <p><a href="https://d3js.org/" target="_blank">© D3.js</a> | <a href="https://github.com/" target="_blank">© GitHub</a> | <a href="https://posit.co/" target="_blank">© RStudio</a> | <a href="https://www.python.org/" target="_blank">© Python</a> | <a href="https://flourish.studio/" target="_blank">© Flourish</a> | <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> | <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a></p>
+    </div> 
+</body>
+</html>
