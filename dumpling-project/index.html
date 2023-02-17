@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>The Secret of Dumplings</title>
+    <!--d3.js--> 
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="flickity.pkgd.min.js"></script>
+    <!-- CSS files-->
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/flickity.css">
+    <!--Header font-->
+    <!--Icon -->
+    <link rel="icon" type="image/x-icon" href="images/Dumplings-Transparent-PNG.png">
+
+  </head>
+  
+  <body>
+
+    <div id="banner">
+      <!--JavaScript files-->
+      <script src="./banner.js"></script></script>
+      <!--JavaScript files--> 
+      <h1 style="text-shadow: 3px 3px #CACFD2;">The Unique Creation of the Chinese Dumpling</h1>
+      <h2 style="text-shadow: 2px 2px #CACFD2;">
+        Discover the different kinds of dumplings and their sauces 🍅🥫🌶
+      <br>
+      <h3 style="text-shadow: 2px 2px #CACFD2;">
+        Zhaozhou(Jovi) Dai and Kevin Lu
+      </h3>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div class='main-container'>
+    <h1 id="paragraph;" style="font-size: 30px;">What is the Chinese dumplings?</h2>
+    <br>
+    <p class="firstpara">Dumplings are not just a mere delicious snack. They carry a rich significance that dates back to Ancient China, 1,800 years ago. 
+        Also known as <a href="https://en.wikipedia.org/wiki/Jiaozi">Jiaozi</a>, these Chinese dumplings commemorate an interesting incident of the past and have now become a part of many lives.
+    </p>
+
+    </div>
+    <br>
+
+    <p><img src=https://i.ibb.co/F46sQh5/Borde.png width=1500></p>
+    <br>
+  
+    <p id="paragraph" style="border: 3px solid black; margin: 2px 13px 2px 13px; background-color: #ECF0F1;">The dataset I gained is about the QS World University Rankings from <strong>2017 to 2022</strong> to discover and explore the world's leading academic 
+      <br>
+      institutions, which was acquired by scraping the <a href="https://www.topuniversities.com/university-rankings?utm_source=topnav">QS World University Rankings</a> website with Python and Selenium.
+    <br>
+    <br>
+    In order to facilitate the first-year students who are about to graduate from high school and are faced with the choice of universities to get the latest information on these universities, I selected, screened, and used the data for <strong>2022</strong>.</p>
+    
+    
+
+    <p id="paragraph">In 2022, <strong>over 1,000 universities</strong> worldwide participated in QS World University Rankings.</p>
+    <p id="paragraph">You can hover and zoom in/out the below map to see the <strong>Universities' Names</strong>, <Strong>Number of Universities</Strong>, and <strong>Average Score</strong> in each country.</p>
+
+    <div class="section">
+    <svg id="map1">
+      <rect id="ocean" fill="white"/>
+      <g id="map"></g>
+    </svg>
+            <!--JavaScript files-->
+            <script src="./map1.js"></script>
+            <!--JavaScript files--> 
+            <!-- flex: automatically adjust the distance when you are zooming in or zooming out the webpage -->
+    <br>
+    <br>
+    <p><img src=https://i.ibb.co/F46sQh5/Borde.png width=1500></p>
+    
+    <p><img src=https://static.wixstatic.com/media/8a9cf0_14469106f5294152b63323c1ab690c03~mv2.gif height=100 width=100></p>
+    
+    <p id="paragraph">Every year, the universities on QS World University Rankings are influenced by many factors, which lead to the change in rankings, among which the <strong> size of the university</strong> and the <strong>number of international students</strong> are significant factors.</p>
+    <p id="paragraph">You can hover the below bar chart of <strong>Top 50 universities</strong> in the world to see the <strong>Universities' Sizes</strong> and <Strong>Number of International Students</strong>.</p>
+
+    </div>
+       
+       <div class="section">
+       <svg id="barchart"></svg>
+       <g id="this"></g>
+       <g id="rect"></g>
+       <g id="x"></g>
+       <g id="y"></g>
+         <!-- <rect id="bar" fill="white" /> -->
+       </div>
+
+       </svg>
+       <!--JavaScript files-->
+       <script src="./barchart.js"></script>
+  
+  
+    <p><img src=https://i.ibb.co/F46sQh5/Borde.png width=1500></p>
+
+    <p><img src=https://static.wixstatic.com/media/8a9cf0_14469106f5294152b63323c1ab690c03~mv2.gif height=100 width=100></p>
+   
+    <p id="paragraph">After knowing the <strong>size of the university</strong> and the <strong>number of international students</strong> of the world's Top 50 universities, 
+      <br>you can get more information through the following bubble chart.</p>
+    <p id="paragraph">You can hover the below bubble chart of <strong>Top 50 universities</strong> in the world to see the
+      <br> <strong>the name of the university</strong>, <strong>the country</strong>, <strong>the type</strong>, and <strong>the number of faculty members</strong>.</p>
+
+    <div class="section">
+      <svg id="chart2"></svg>
+      <g id="circle"></g>
+        <!-- <rect id="bar" fill="white" /> -->
+      </div>
+
+      </svg>
+      <!--JavaScript files-->
+      <script src="./chart2.js"></script>
+
+      <p id="paragraph"> <em><strong>*Note:</strong></em>
+      <br>
+      •  <strong>Radius scale of bubbles</strong> in the bubble chart <strong>is determined by the number of faculty members</strong> in each university. 
+      <br>
+      <strong>More faculty members</strong> in a university, the <strong>larger the radius scale of bubbles</strong> in this university.
+      <br>
+      <br>
+      • Color of the bubbles used by <strong><span class="color1">light purple</span></strong> and <strong><span class="color2">dark purple</span></strong> according to the <strong>type of the university</strong>. 
+      <br>
+      <strong><span class="color1">Light bubbles</span></strong> represent the type of <strong>PRIVATE</strong> universities; the <strong><span class="color2">Dark bubbles</span></strong> represent the type of <strong>PUBLIC</strong> universities.</p>
+      
+      <br>
+      <p><img src=https://i.ibb.co/F46sQh5/Borde.png width=1500></p>
+    
+      <p><img src=https://static.wixstatic.com/media/8a9cf0_14469106f5294152b63323c1ab690c03~mv2.gif height=100 width=100></p>
+      <h1 id="paragraph;" style="font-size: 30px;">Conclusion:</h2>
+      <p id="paragraph" style="border: 3px solid black; margin: 2px 15px 2px 15px; background-color: #ECF0F1;">
+        As the university rankings on QS World University Rankings change every year due to various factors, sometimes you cannot just focus on a university's <strong>"overall ranking."</strong> On the contrary, when you choose a university, you should combine various factors, such as the above that I mentioned <strong>university size</strong>, 
+        <strong>the number of international students</strong>, <strong>the average score</strong>, <strong>the numbers of faculty</strong>, etc., to consider and choose a university that you like and is also suitable for you.</p>
+
+   
+   
+   <div id = "tooltip"></div>
+   <div id = "tooltip2"></div>
+   <div id = "tooltip3"></div>
+  
+  
+<br>
+<br>
+<br>
+    <p id="back">
+    <a href="#banner">Back to Top</a>
+    </p>
+
+  </body>
+</html>

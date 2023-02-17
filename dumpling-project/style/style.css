@@ -1,0 +1,119 @@
+body {
+    font-family: 'Martel', serif;
+    margin: 0;
+    text-align: center;
+
+}
+
+#banner {
+    color: black;
+    background-color: "none";
+    background-image: url('https://imag.bonviveur.com/dumplings-de-cerdo-antes-de-coccion.jpg');
+    background-position: 50% 100%;
+    background-color: non-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 20vh 25px;
+    text-align: center;
+  }
+
+#banner h1 {
+  font-size: 50px;
+  font-family: "rockwell";
+}
+
+#banner h2 {
+  font-family: "rockwell";
+}
+
+#banner h3 {
+  font-family: "rockwell";
+}
+  
+
+  @media (max-width: 600px) {
+    .section {
+      flex-direction: column;
+    }
+    .section svg {
+      flex: none;
+    }
+  }
+
+  #back {
+    text-align: center;
+  }
+
+  #paragraph {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 8px;
+    line-height: 35px;
+  }
+
+  #tooltip {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 200px;
+    text-align: left;
+    font-size: 15px;
+  }
+
+  #tooltip2 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+    font-family: 'rockwell', sans-serif;
+    font-size: 10pt;
+    background-color:white;
+    padding: 3px;
+    opacity: 0;
+    pointer-events: none;
+    border: 3px solid #8E44AD;
+  }
+
+  #tooltip3 {
+    position: absolute;
+    opacity: 0;
+  }
+
+
+  a:link {
+    color:#cd395b; /* Uses Emancipator ROSE */
+    text-decoration: none;
+}
+
+  a:visited {
+    color:#cd395b;
+}
+
+  a:hover {
+    color:#1c1c1c;
+    background-color: #ebf952; /*Sets background of link to Emancipator HIGHLIGHTER */
+}
+
+span.color1 {
+  color: #A569BD;
+}
+
+span.color2 {
+  color: #8E44AD;
+}
+
+.main-container p {
+    max-width: 600px;
+    font-family: 'Martel', serif;
+    font-weight: 300;
+    text-align: left;
+    font-size: 1em;
+    margin: 0em auto;
+    padding-top: 1em;
+}
+
+p.firstpara {
+    padding-top: 5em;
+  }
