@@ -413,7 +413,7 @@ article {
   margin: 0 auto 2rem auto;
   margin-bottom: 25rem;
   opacity: 0.7;
-  padding-bottom: 50vh;
+  padding-bottom: 1rem;
 }
 
 .step:last-child {
@@ -545,3 +545,8 @@ flex-grow: 2;
   position: absolute;
   opacity: 0;
 }
+
+.flourish-embed{
+  margin-left: 350px;
+  width: 700px;
+  }
